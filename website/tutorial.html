@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <script src="js/libs/bitcoinjs-lib.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-sm-1 col-sm-offset-1'>
+                <img src="img/logo.png">
+            </div>
+            <div class='col-sm-9 col-sm-offset-1'>
+                <h2 class=''>Auroracoin Bland.is Tipbot</h2>
+            </div>
+        </div>
+        <div class='row'> 
+            <hr>
+            <div class='col-sm-6 col-sm-offset-1'>
+                <br>
+                <img src=''>
+            </div>
+            <div class='col-sm-4'>
+                <legend>
+                    <ul class='nav'>
+                        <li><a href="#intro"><h5>Introduction</h5></a></li>
+                        <li><a href="#account"><h5>AURtip Account</h5></a></li>
+                        <li><a href="#commands"><h5>Command Overview</h5></a></li>
+                        <li><a href="#deposit"><h5>Deposit to AURtip</h5></a></li>
+                        <li><a href="#tipping"><h5>Tipping Someone</h5></a></li>
+                        <li><a href="#preferences"><h5>Preference Settings</h5></a></li>
+			<li><a href="#faq"><h5>FAQ</h5></a></li>
+                    </ul>
+                </legend>
+            </div>
+        </div>
+        <div class='container'>
+        
+        <a id="intro"></a><h3>Introduction</h3></a>
+        <p>AURtip-tipbot for bland.is is a convenient way to thank people who post helpful comments.
+	    Tipping users on bland.is is a good way to encourage people to keep posting, thank them for contributing, and keep the 
+	    community alive.  Aurtip can send your balance to any address so you can spend your Auroracoins elsewhere.
+	    Include "+AURtip" for reigistration and other commands.</p>
+	    <p>The commands are listed and described below in the <a href="#commands">commands section</a>.</p>
+        
+        <a id="account"></a><h3>Details of an AURtip account</h3>
+        <p>When you make your first AURtip command on bland.is (+AURtip), you are automatically registered on our server.
+	    Your bland.is username is used for your AURtip account, and you do not need a password.  A deposit public key
+	    is assigned to your account for you to deposit funds to begin tipping other users.  When you request information 
+	    from AURtip, you can either have that information posted publicly to the bland.is forum, or recieve that information 
+	    at your private email address.  To receive it in your email simply associate an email address with your AURtip account
+	    by sending it in a command like this:</p>
+	    <p><strong>+AURtip email@address.com</strong></p>
+	    <p>From this point all your AURtip information will be send privately to your email.  To change your onfile email address
+	    simply send us a new one.  Also, to remove your email from our records, send a command like this:</p>
+	    <p><strong>+AURtip noemail</strong></p>
+        
+        <a id="commands"></a><h3>Overview of AURtip commands</h3>
+        <p>Here is a list of all the aurtip commands.  To use a command you should type "+AURtip" into your post.  Up to
+	    four items can be included in an AURtip command eg. "+AURtip balance tip @username 1".  Descriptions and examples are below:</p>
+        <ul>
+            <li><strong>info</strong> - returns your account info including balance, addresses and preferences.</li>
+            <br>
+            <p>Usage: <i>+AURtip info</i><p>
+            <li><strong>history</strong> - returns all your transaction history including deposits, withdrawls, and tips sent and received.</li>
+            <br>
+            <p>Usage: <i>+AURtip history</i><p>
+            <li><strong>tip</strong> - sends a tip to a user.  This command must include one username and one amount</li>
+            <br>
+    	    <p>Usage: <i>+AURtip tip @username 1</i> - tip one AUR to bland.is user "username"<p>
+            <p>Usage: <i>+AURtip tip 1 @username</i> - same as above<p>
+            <p>Usage: <i>+AURtip tip email@address.com 1 @username</i> - change your email and send one AUR to to bland.is user "username"<p>
+        </ul>
+        
+        <a id="deposit"></a><h3>Depositing Auroracoins to your AURtip account</h3>
+        <p>To deposit Auroracoins to your AURtip account, send AUR to the Auroracoin deposit address associated with your account.  
+            It is safe to show others this address since they cannot use it to spent the money in that address.  To see your address, 
+            you cand send the command "+AURtip info" and your deposit address will be included in the reply.</p>
+	    <p>After you deposit Auroracoins into your AURtip account, it may take a few minutes for us to receive them.  When your Auroracoins
+	    are deposited into your AURtip account and become available we will send you a message to let you know.</p>
+        
+        <a is="tipping"></a><h3>Sending AURtips</h3>
+        <p>The "tip" command is used to send AUR to another bland.is user or you can just include a username and amount.  You can simply include a username with the "@" symbol and an
+	    amount.  The funds will be withdrawn from your onfile account balance and a message will be sent to the recipeint.  If the 
+	    recipeint does not accept your tip in 5 days, the amount will be returned to your account.  Tips can be sent in conjunction 
+	    with other commands as well.  Some example usages are listed below:</p>
+        <ul>
+            <li>Usage: <i>+Aurtip @username 1</i> - send "username" 1 AUR</li>
+            <li>Usage: <i>+Aurtip 1 @username</i> - same as above</li>
+            <li>Usage: <i>+Aurtip tip @username 1</i> - same as above</li>
+            <li>Usage: <i>+Aurtip tip @username 1 history</i> - send "username" 1 AUR and send your history to you.</li>
+            <li>Usage: <i>+Aurtip tip history @username 1</i> - same as above</li>
+        </ul>
+        
+        <a id="preferences"></a><h3>Seeing and changing AURtip account preferences</h3>
+        <p>Your AURtip account has preferences to allow you to automate some of the actions of AURtip.  For example, you can
+	    set your account with preferences to automatically accept tips, or to automatically withdraw tips to your Auroracoin address.
+	    Below are some exampes of how to set specific preferences:</p>
+        <ul>
+            <li><i>autowithdraw</i> - automatically withdraws your tips to your onfile Auroracoin receiving address.</li>
+            <li><i>noemail</i> - removes your email address from our server.  You cannot receive private messages.</li>
+        </ul>
+        
+	<a id="faq"></a><h3>FAQ - Frequently Asked Questions</h3>
+        <p></p>
+
+        </div>
+    </container>
+</body>
+</html>

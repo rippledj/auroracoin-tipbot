@@ -1,0 +1,38 @@
+Questions:
+
+2. Users recieve email and public post for received tips
+-email includes thread_id link and tells user to go there and reply to post with unique_id
+
+3. regex or mathimatical validation of addresses in python??
+
+4. unregister issues (allow users to completely block or unregister themselves?)
+-balance check
+-flag as blocked, unregistered, keep user data.
+
+10. sending back to senders if rejected or timeout
+
+12. testing phase
+
+------------------------------------------
+
+-funds need to be checked for expiry and sent back with message if 5 days old.
+-add try to the exchange rate scripts to prevent error.
+
+directly respond to the thread that has command in it.
+
+check potential of setting up a mail server to respond to or receive command via email.
+
+
+Moving the scripts
+
+-move scripts to new folder in vps
+-create databases required
+-test scripts from command line
+-cron scripts
+
+
+post = requests.get("https://api.bland.is/me/messageboard/?api_key=97c92bb0-350f-41df-b37f-788ca6ebda93&parent_id=29311357&message=testing")
+
+
+https://api.bland.is/me/messageboard/?api_key=97c92bb0-350f-41df-b37f-788ca6ebda93&access_token=bAkAIoYqNrIWiDZzz%2fKGrn80GwBpVdnSGhUdVxc9%2byXCWboKlHZaEnwd5SD2JRM%2bNttdAQJ1tD7RGrJsyaR3fNDOjQL9h2SE&parent_id=22640648&message=testing&headline=test
+
