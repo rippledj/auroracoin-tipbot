@@ -279,17 +279,19 @@ class PayloadProcessor:
         dictionary = dictionary.Dictionary("english")
         if type == "info":
             self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_INFO))
+            self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_USERNAME + data[4]))
+            self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_EMAIL_ADDRESS + data[5]))
+            self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_REGISTRATION_DATE + str(data[0])))
             self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_BALANCE + data[2] + " AUR"))
-            self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_REGISTRATION_DATE + str(data[1])))
-            self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_DEPOSIT_ADDRESS + data[5]))
-            if data[3] is None:
-                self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_ONFILE_ADDRESS +  " None"))
+            self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_DEPOSIT_ADDRESS + data[6]))
+            if data[1] is None:
+                self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_RECEIVE_PUBKEY +  " None"))
             else:
-                self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_ONFILE_ADDRESS + data[3]))
-                if data[4] == True:
-                    self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_AUTO_WITHDRAW + " True"))
-                else:
-                    self.messages.append((thread_id, recipient, "private",  dictionary.MESSAGES_AUTO_WITHDRAW + "False"))
+                self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_RECEIVE_PUBKEY + data[1]))
+            if data[3] == True:
+                self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_AUTO_WITHDRAW + " True"))
+            else:
+                self.messages.append((thread_id, recipient, "private",  dictionary.MESSAGES_AUTO_WITHDRAW + "False"))
         if type == "balance":
             self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_BALANCE + data + " AUR"))
         if type == "history":

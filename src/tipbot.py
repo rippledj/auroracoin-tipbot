@@ -26,9 +26,9 @@ import exchangeRate
 import bank
 
 # Import abstraction Modules
-import rpc_abstraction_default
-import sql_abstraction_default
-import api_abstraction_default
+import rpc_abstraction
+import sql_abstraction
+import api_abstraction
 
 # Logging Configuration
 logger = logging.getLogger('__Aurtip__')
@@ -69,16 +69,16 @@ rpc = rpc_abstraction.BitcoinRpc(RPC_PROFILE)
 #response = requests.get(api.publish_url)
 #print response.content
 
-# Get and progess new exchange rate
+# Get and process new exchange rate
 exchange = exchangeRate.exchangeRateProcessor(db)
 
 # Build payload from an API source
-forumPayload = payload.Payload("forum", api, db)
+#forumPayload = payload.Payload("forum", api, db)
 #inboxPayload = payload.Payload("inbox", api, db)
 testPayload = payload.Payload("test", api, db)
 
 # Process the payload into command calls and return messages to users
-forumProcessList = payloadProcessor.PayloadProcessor(forumPayload.payload, db, rpc, exchange)
+#forumProcessList = payloadProcessor.PayloadProcessor(forumPayload.payload, db, rpc, exchange)
 #inboxProcessList = payloadProcessor.PayloadPrcessor(inboxPayload.paylaod, db, rpc, exchange)
 testProcessList = payloadProcessor.PayloadProcessor(testPayload.payload, db, rpc, exchange)
 

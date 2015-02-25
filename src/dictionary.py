@@ -17,7 +17,9 @@ class Dictionary:
         if language == "english":
             self.MESSAGES_AUR = "AUR"
             self.MESSAGES_INFO = "Account Info: "
-            self.MESSAGES_RECIEVE_PUBKEY = "Withdrawl address: "
+            self.MESSAGES_USERNAME = "Username: "
+            self.MESSAGES_EMAIL_ADDRESS = "Email Address: "
+            self.MESSAGES_RECEIVE_PUBKEY = "Withdrawl address: "
             self.MESSAGES_DEPOSIT_ADDRES = "Deposit address: "
             self.MESSAGES_REGISTRATION_DATE = "Registration date: "
             self.MESSAGES_ACCOUNT_HISTORY = "Account History: "
@@ -58,11 +60,11 @@ class Dictionary:
             self.MESSAGES_REGISTER = "Thanks for registering your AURtip account. Now automatically accepting tips. "
             self.MESSAGES_BACK_POOL_ERROR = "There was insufficient funds in our account to complete your withdrawl.  Administration has been notified and we will fix this immediately."
             self.MESSAGES_NO_ADDRESS_ERROR = "You must have a receive address onfile for automatic withdrawl. Please send us an Auroracoin public address."
-            
+            self.MESSAGES_DEPOSIT_ADDRESS = "Deposit Address: "
         if language == "icelandic":
             self.MESSAGES_AUR = "AUR"
             self.MESSAGES_INFO = "Aðgangsupplýsingar: "
-            self.MESSAGES_RECIEVE_PUBKEY = "Útborgunarmyntfang: "
+            self.MESSAGES_RECEIVE_PUBKEY = "Útborgunarmyntfang: "
             self.MESSAGES_DEPOSIT_ADDRES = "Innborgunarmyntfang: "
             self.MESSAGES_REGISTRATION_DATE = "Dagsetning skráningar: "
             self.MESSAGES_ACCOUNT_HISTORY = "Yfirlit yfir aðgang: "

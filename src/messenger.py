@@ -63,7 +63,7 @@ class Messenger:
                 if previous_response_destination == "public":
                     print "---Forum Message---"
                     print message_text
-                    publish_post = requests.post(api.new_post_url + "&parent_id=" +  message["thread_id"] + "&message=" + message_text)
+                    #publish_post = requests.post(api.new_post_url + "&parent_id=" +  message["thread_id"] + "&message=" + message_text)
                 elif previous_response_destination == "private":
                     print "---Email Message---"
                     print message_text

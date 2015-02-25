@@ -10,7 +10,7 @@
 	   },
 	   "advtype":"61",
 	   "headline": "Chaplin er týndur",
-	   "text":"+Aurtip @Afglapi 10.5  is start registration - start of line test Arnþrúður Sæmundsdóttir Chaplin er týndur, hann á heima við Árveginn á Selfossi. Hann er svartur með hvítt týni og svartan blett yfir munninum sem lítur út eins og yfirvaraskegg Chaplins. Chaplin er bæði geltur og örmerktur, er mjög styggur.Vinsamlega látið vita ef sést hefur til hans.",
+	   "text":"+Aurtip info +Aurtip @Afglapi 10.5  is start registration - start of line test Arnþrúður Sæmundsdóttir Chaplin er týndur, hann á heima við Árveginn á Selfossi. Hann er svartur með hvítt týni og svartan blett yfir munninum sem lítur út eins og yfirvaraskegg Chaplins. Chaplin er bæði geltur og örmerktur, er mjög styggur.Vinsamlega látið vita ef sést hefur til hans.",
 	   "pictures": [
 		],
 	   "thumbnails": [
