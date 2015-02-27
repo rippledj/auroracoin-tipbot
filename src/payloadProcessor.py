@@ -41,25 +41,25 @@ class PayloadProcessor:
                     if command in COMMAND_LIST:
                         if command == 'info':
                             #check if user email onfile
-                            email = db.get_user_email(item['username'])
+                            email = db.get_user_email(item['site'], item['username'])
                             if email is None:
                                 self.log.debug("User info request found. No email on file for user %s in post %s" % (item['username'], item['thread_id']))
                                 self.buildMessage("no-email", item['thread_id'], item['username'])
                             else:
                                 self.log.debug("User info command request from user %s in post %s" % (item['username'], item['thread_id']))
                                 # get user info from database                            
-                                info = db.get_user_info(item['username'])
+                                info = db.get_user_info(item['site'], item['username'])
                                 self.buildMessage("info", item['thread_id'], item['username'], info)
                         elif command == 'history':
                             # check if user email is onfile
-                            email = db.get_user_email(item['username'])
+                            email = db.get_user_email(item['site'], item['username'])
                             if email is None:
                                 self.log.debug("User info request found. No email on file for user %s in post %s" % (item['username'], item['thread_id']))
                                 self.buildMessage("no-email", item['thread_id'], item['username'])
                             else:
                                 self.log.debug("User history command request from user %s in post %s" % (item['username'], item['thread_id']))
                                 #get user account transaction history and send to user inbox
-                                history_object = db.get_user_history(item["username"])
+                                history_object = db.get_user_history(item['site'], item["username"])
                                 self.buildMessage("history", item['thread_id'], item['username'], history_object)
                         elif command == 'tip':
                             self.log.debug("Tip command request from user %s in post %s" % (item['username'], item['thread_id']))
@@ -67,7 +67,7 @@ class PayloadProcessor:
                         elif command == 'accept':
                             self.log.debug("User registration 'accept' command for user %s in post %s" % (item['username'], item['thread_id']))
                             # change user preference to automatically accept the funds
-                            db.change_user_preference(item['username'], "registered", 1)
+                            db.change_user_preference(item['site'], item['username'], "registered", 1)
                             deposit_address = db.get_user_deposit_address(item['username'])
                             self.buildMessage("register", item['thread_id'], item['username'], deposit_address)
                         elif command == 'reject':
@@ -78,7 +78,7 @@ class PayloadProcessor:
                             self.payloadWithdraw(item, db, rpc)
                         elif command == 'balance':
                             #check if user email onfile
-                            email = db.get_user_email(item['username'])
+                            email = db.get_user_email(item['site'], item['username'])
                             if email is None:
                                 self.log.debug("User balance request found. No email on file for user %s in post %s" % (item['username'], item['thread_id']))
                                 self.buildMessage("no-email", item['thread_id'], item['username'])
@@ -88,22 +88,22 @@ class PayloadProcessor:
                         elif command == 'pool':
                             self.log.debug("Preference change request found: 'pool' for user %s in post %s" % (item['username'], item['thread_id']))
                             # change user preference to pool funds and not send tip right away
-                            db.change_user_preference(item['username'], "pool", 1)
+                            db.change_user_preference(item['site'], item['username'], "pool", 1)
                             self.buildMessage("preference", item['thread_id'], item['username'], "Now pooling tips")
                         elif command == 'autowithdraw':
                             self.log.debug("Preference change request found: 'autowithdraw' for user %s in post %s" % (item['username'], item['thread_id']))
                             # change user preference to automatically transfer tip funds to pubkey address
-                            if db.change_user_preference(item['username'], "pool", 0) == True:
+                            if db.change_user_preference(item['site'], item['username'], "pool", 0) == True:
                                 self.buildMessage("preference", item['thread_id'], item['username'], "Now automatically withdrawing tips.")
                             else: 
                                 self.buildMessage("autowd-no-address-error", item['thread_id'], item['username'])
                         elif command == 'noemail':
                             self.log.debug("Preference change request found: 'noemail' for user %s in post %s" % (item['username'], item['thread_id']))
                             # remove user email from our database
-                            db.remove_user_email(item['username'])
+                            db.remove_user_email(item['site'], item['username'])
                             self.buildMessage("preference", item['thread_id'], item['username'], "Your email address has been removed from records.")
                         elif command == 'unregister':
-                            db.unregister_user(item['username'], item['datetime'], item['thread_id'])
+                            db.unregister_user(item['site'], item['username'], item['datetime'], item['thread_id'])
                             self.buildMessage("unregister", item['thread_id'], item['username'])
                     else:
                         self.log.debug("Invalid command: '%s' included in post from user %s in post %s" % (command, item['username'], item['thread_id']))
@@ -112,11 +112,11 @@ class PayloadProcessor:
                 self.payloadTip(item, db, rpc)
             elif "address" in item:
                 self.log.debug("Change of public receive address requested for %s in post %s" % (item['username'], item['thread_id']))
-                db.change_user_receive_address(item["username"], item['address'])
+                db.change_user_receive_address(item['site'], item["username"], item['address'])
                 self.buildMessage("address-change", item['thread_id'], item['username'], item['address'])
             elif "email" in item:
                 self.log.debug("Change of email address requested for %s in post %s" % (item['username'], item['thread_id']))
-                db.change_user_email_address(item["username"], item['email'])
+                db.change_user_email_address(item['site'], item["username"], item['email'])
                 self.buildMessage("email-change", item['thread_id'], item['username'])
             
     def payloadWithdraw(self, item, db, rpc, address=None):
@@ -127,7 +127,7 @@ class PayloadProcessor:
                 withdraw_error = True
                 self.log.debug("Incorrect number of amounts included in withdraw command for user %s in post %s" % (item['username'], item['thread_id']))
             else:
-                balance = db.get_balance(item['username'])
+                balance = db.get_balance(item['site'], item['username'])
                 amount_decimal = decimal.Decimal(item['amount'][0])
                 balance_decimal = decimal.Decimal(balance)
                 if amount_decimal > balance_decimal:
@@ -140,7 +140,7 @@ class PayloadProcessor:
             withdraw_error = True
         # check that address is included
         if 'address' in item is None: 
-            address = db.get_user_receive_address(item['username'])
+            address = db.get_user_receive_address(item['site'], item['username'])
             if address is None:
                 self.buildMessage("no address", item['thread_id'], item['username'])
                 self.log.debug("No address is available for user %s" % (item['username']))
@@ -162,7 +162,7 @@ class PayloadProcessor:
                 data = [item['amount'][0], address , balance]
                 withdraw_txid = rpc.bitcoin.sendfrom("back_pool", address, amount_decimal)
                 # add withdrawl to the database table
-                db.withdraw_to_user(item['thread_id'], item['username'], address, amount_decimal, withdraw_txid)
+                db.withdraw_to_user(item['thread_id'], item['site'], item['username'], address, amount_decimal, withdraw_txid)
                 self.buildMessage("withdraw", item['thread_id'], item['username'], data)
                 self.log.critical("Withdrawl completed for %s \tAmount: %s \tAddress: %s" % (item['username'], item['amount'][0], address))
             else:
@@ -203,7 +203,7 @@ class PayloadProcessor:
                 recipient =  item['recipient'][0].replace("@", "")
                 self.registrationCheck("recipient", item, db, rpc, recipient)
                 # check balance is available for tip
-                balance = db.get_balance(item['username'])
+                balance = db.get_balance(item['site'], item['username'])
                 balance_decimal = decimal.Decimal(balance)
                 amount = decimal.Decimal(item['amount'][0])
                 if balance_decimal < amount:
@@ -245,33 +245,33 @@ class PayloadProcessor:
     def registrationCheck(self, type, item, db, rpc, recipient=None):
         if type == "user":
             # check if user is in the database already
-            if db.check_user_in_database(item['username']) == False:
+            if db.check_user_in_database(item['site'], item['username']) == False:
                 self.log.debug("Registration check - user is NOT in database already!")
                 # register user, create deposit address and message user
                 db.register_new_user("user", item)
                 deposit_address = rpc.bitcoin.getnewaddress("deposit_pool")
-                db.store_new_deposit_address(item['username'], deposit_address)
+                db.store_new_deposit_address(item['site'], item['username'], deposit_address)
                 self.buildMessage("register", item['thread_id'], item['username'], deposit_address)
                 self.log.debug("New user registered: %s in post %s" % (item['username'], item['thread_id']))
             # if in database already 
             else:
                 self.log.debug("Registration check - user is in database already!")
                 # if user is registered only as a recipient but not explicitly
-                if db.check_user_registration_status(item['username']) == False:
+                if db.check_user_registration_status(item['site'], item['username']) == False:
                     # change user preference to automatically accept the funds
-                    db.change_user_preference(item['username'], "registered", 1)
+                    db.change_user_preference(item['site'], item['username'], "registered", 1)
                     # move all pending tips to the balance for user
-                    db.accept_pending_tips(item['username'])
-                    deposit_address = db.get_user_deposit_address(item['username'])
+                    db.accept_pending_tips(item['site'], item['username'])
+                    deposit_address = db.get_user_deposit_address(item['site'], item['username'])
                     self.buildMessage("register", item['thread_id'], item['username'], deposit_address)
                     self.log.debug("Previous recipeint registered: %s in post %s" % (item['username'], item['thread_id']))
         if type == "recipient":
-            if db.check_user_in_database(recipient) == False:
+            if db.check_user_in_database(item['site'], recipient) == False:
                     db.register_new_user("recipient", item, recipient)
                     deposit_address = rpc.bitcoin.getnewaddress("deposit_pool")
-                    db.store_new_deposit_address(recipient, deposit_address)
+                    db.store_new_deposit_address(item['site'], recipient, deposit_address)
                     self.buildMessage("register-recipient", item['thread_id'], item['username'], deposit_address)
-                    self.log.debug("Recipient entered into databse: %s in post %s" % (item['username'], recipient))
+                    self.log.debug("Recipient entered into databse: %s in post %s" % (recipient, item['thread_id']))
                     
     def buildMessage(self, type, thread_id, recipient, data=None):
         # array to hold all messages

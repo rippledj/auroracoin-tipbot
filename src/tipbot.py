@@ -58,44 +58,37 @@ logger.addHandler(ch)
 # define connection settings
 DB_PROFILE = "mysql" 
 RPC_PROFILE = "auroracoind"
-API_PROFILE = "bland"
+#API_ROUTES = {"test": ["test"], "bland": ["bland"], "phpbb": ["auroraspjall", "jeppaspjall", "skyttur", "islandrover", "blyfotur", "kruser", "mbclub"]} 
+API_ROUTES = {"phpbb": ["auroraspjall", "jeppaspjall", "skyttur", "islandrover", "blyfotur", "kruser", "mbclub"]} 
+#API_ROUTES = {"test": ["test"]}
 
-# Create objects for abstracted connections: restFulGET, postgresql, bitcoinrpc
-api = api_abstraction.ApiConnection(API_PROFILE)
+# create abstracted objects for db and rpc connections based on settings defined above
 db = sql_abstraction.SqlConnection(DB_PROFILE)
 rpc = rpc_abstraction.BitcoinRpc(RPC_PROFILE)
-
-# checking the publish api options
-#response = requests.get(api.publish_url)
-#print response.content
 
 # Get and process new exchange rate
 exchange = exchangeRate.exchangeRateProcessor(db)
 
-# Build payload from an API source
-#forumPayload = payload.Payload("forum", api, db)
-#inboxPayload = payload.Payload("inbox", api, db)
-testPayload = payload.Payload("test", api, db)
+# interate through all routes, get and process payloads
+for api_profile, api_sites in API_ROUTES.items():
+    for site in api_sites:
+        logger.debug("---Starting %s API Profile for %s site---" % (api_profile, site))
+        # Create api object for the specific type and site to parse
+        api = api_abstraction.ApiConnection(api_profile, site)
 
-# Process the payload into command calls and return messages to users
-#forumProcessList = payloadProcessor.PayloadProcessor(forumPayload.payload, db, rpc, exchange)
-#inboxProcessList = payloadProcessor.PayloadPrcessor(inboxPayload.paylaod, db, rpc, exchange)
-testProcessList = payloadProcessor.PayloadProcessor(testPayload.payload, db, rpc, exchange)
+        # Build payload from an API source
+        forumPayload = payload.Payload(api_profile, api, db)
 
-# Process messages into forum posts and emails
-report = messenger.Messenger(testProcessList, api, db)
+        # Process the payload into command calls and return messages to users
+        forumProcessList = payloadProcessor.PayloadProcessor(forumPayload.payload, db, rpc, exchange)
 
-# Bank deposit checking
-#deposit_report = bank.DepositProcessor(api, db, rpc)
+        # Process messages into forum posts and emails
+        report = messenger.Messenger(forumProcessList, api, db)
 
 logger.debug("---Forum Check Script Completed---")
 
 # Check all user addresses for deposits
-#bankPayload = bank.BankPayload("bank", api, db)
-#inboxPayload = payload.Payload("inbox", api, db)
-bankPayload = bank.BankPayload("test", api, db, rpc)
-
-# Process and message
+#bankPayload = bank.BankPayload("test", api, db, rpc)
 
 logger.debug("---Bank Script Completed---")
 

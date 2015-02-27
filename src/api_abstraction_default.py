@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright Licencing:
 # MIT Licence
 
@@ -14,12 +15,18 @@
 # Import Basic Modules
 
 class ApiConnection:
-    def __init__(self, profile):
+    def __init__(self, profile, site=None):
+        self.aurora_node_balance = "http://104.236.66.174:3333/chain/Auroracoin/q/addressbalance/"
+        if profile == "test":
+            self.api_type = "test"
+            self.api_site = "test"
         # bland.is profile
         if profile == "bland":
+            self.api_type = "bland"
+            self.api_site = "bland"
             base_url = "https://api.bland.is/"
-            key = "your_api_key"
-            access_token= "your_access_token"
+            key = "you api key"
+            access_token= "your access token"
             # Bland.is requires three APIs for finding commands in user text
             self.categories_url = base_url + "messageboard/categories?api_key=" + key
             self.threads_url = base_url + "messageboard/?api_key=" + key + "&category_id="
@@ -29,4 +36,38 @@ class ApiConnection:
             self.new_post_url = base_url + "me/messageboard/?api_key=" + key + "&access_token=" + access_token
             self.parent_id_url = "&parent_id=" 
             self.message_url = "&message="
-            self.aurora_node_balance = "http://104.236.66.174:3333/chain/Auroracoin/q/addressbalance/"
+        
+        if profile == "phpbb":
+            if site == "auroraspjall":
+                self.api_type = "phpbb"
+                self.api_site = "auroraspjall"
+                self.feed_url = "http://auroraspjall.is/feed.php"
+                # Bland.is requires three APIs for finding commands in user text
+            if site == "jeppaspjall":
+                self.api_type = "phpbb"
+                self.api_site = "Hið íslenska jeppaspjall"
+                self.feed_url = "http://www.jeppaspjall.is/feed.php"
+            if site == "skyttur":
+                self.api_type = "phpbb"
+                self.api_site = "skyttur"
+                self.feed_url = "http://spjall.skyttur.is/feed.php"
+            if site == "islandrover":
+                self.api_type = "phpbb"
+                self.api_site = "islandrover"
+                self.feed_url = "http://www.islandrover.is/spjall/feed.php"
+            if site == "blyfotur":
+                self.api_type = "phpbb"
+                self.api_site = "blyfotur"
+                self.feed_url = "http://spjall.blyfotur.is/feed.php"
+            if site == "kruser":
+                self.api_type = "phpbb"
+                self.api_site = "kruser"
+                self.feed_url = "http://spjall.kruser.is/feed.php"
+            if site == "mbclub":
+                self.api_type = "phpbb"
+                self.api_site = "mbclub"
+                self.feed_url = "http://mbclub.is/spjall/feed.php"
+
+
+                
+                

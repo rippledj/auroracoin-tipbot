@@ -36,14 +36,14 @@ class BankPayload:
                 total_received = decimal.Decimal(rpc.bitcoin.getreceivedbyaddress(address['deposit_pubkey']))
                 total_received_string = str('%.10g' % total_received).strip() 
                 deposit_amount = decimal.Decimal(total_received_string) - address['received_to_date']
-                self.log.critical("Deposit amount: %s Username: %s Deposit address: %s", str('%.10g' % deposit_amount).strip(), address['username'], address['deposit_pubkey'])
+                self.log.critical("Deposit amount: %s Site: %s Username: %s Deposit address: %s", str('%.10g' % deposit_amount).strip(), address['site'], address['username'], address['deposit_pubkey'])
                 total_deposit += deposit_amount
                 if deposit_amount > 0:
                     balance_found = True
                     deposits.append((address['deposit_pubkey'], deposit_amount))
                     # modify user balance amount and received to date amount in database
-                    db.deposit_to_user(address['username'], deposit_amount, address['deposit_pubkey'])
-                    self.log.debug("Deposits found for user %s in address %s : %s" % (address['username'], address['deposit_pubkey'], deposit_amount))
+                    db.deposit_to_user(address['site'], address['username'], deposit_amount, address['deposit_pubkey'])
+                    self.log.debug("Deposits found for %s user %s in address %s : %s" % (address['site'], address['username'], address['deposit_pubkey'], deposit_amount))
             if balance_found == True:
                 self.log.debug("---Deposits are being moved to a pool---")
                 back_pool_address = rpc.bitcoin.getnewaddress("back_pool")

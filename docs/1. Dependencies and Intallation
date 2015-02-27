@@ -9,10 +9,19 @@ Auroracoin Forum Tip-bot Dependencies and Installation
 
 
 
-1.0 Basic Dependencies
+1.0 Python Dependencies
 ----------------------
 -Python version 2.7 or greater
+-MySQLdb python packages if using MySQL database
+-Psycopg2 python package if using PostgreSQL database
+
+2.0 bitcoind Dependencies
+-------------------------
 -bitcoinrpc or altcoin version of bitcoind
 -postgresql or mysql
+
+3.0 Server Dependencies
+-----------------------
+
 
 
