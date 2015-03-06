@@ -110,7 +110,7 @@ class Payload:
         if api.api_type == 'phpbb':
             feed_response = requests.get(api.feed_url)
             if feed_response.status_code == 200:
-                self.log.debug("--- Feed.php Received---")
+                self.log.debug("---Feed.php Received---")
                 # using feedparser to grab the xml feed from the phpbb site
                 import feedparser
                 first_entry = True
@@ -181,7 +181,10 @@ class Payload:
                             self.log.debug("Skipping previous post: %s" % prepared_post['id'])
                         # if last post is still not found in the feed
                         # need to go to each URL until finding last post
-
+            else:
+                print feed_response.status_code
+                print feed_response.content
+                self.log.debug("---Feed Not Available---")
         
     def getMessagePayload(self, api, db):
         # API call to get web-app messages
