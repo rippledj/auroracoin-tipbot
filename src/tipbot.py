@@ -29,6 +29,7 @@ import bank
 import rpc_abstraction
 import sql_abstraction
 import api_abstraction
+import mech_abstraction
 
 # Logging Configuration
 logger = logging.getLogger('__Aurtip__')
@@ -65,6 +66,7 @@ API_ROUTES = {"phpbb": ["auroraspjall", "jeppaspjall", "skyttur", "islandrover",
 # create abstracted objects for db and rpc connections based on settings defined above
 db = sql_abstraction.SqlConnection(DB_PROFILE)
 rpc = rpc_abstraction.BitcoinRpc(RPC_PROFILE)
+bbmech = mech_abstraction.Mechanizer()
 
 # Get and process new exchange rate
 exchange = exchangeRate.exchangeRateProcessor(db)
@@ -75,15 +77,12 @@ for api_profile, api_sites in API_ROUTES.items():
         logger.debug("---Starting %s API Profile for %s site---" % (api_profile, site))
         # Create api object for the specific type and site to parse
         api = api_abstraction.ApiConnection(api_profile, site)
-
         # Build payload from an API source
         forumPayload = payload.Payload(api_profile, api, db)
-
         # Process the payload into command calls and return messages to users
         forumProcessList = payloadProcessor.PayloadProcessor(forumPayload.payload, db, rpc, exchange)
-
         # Process messages into forum posts and emails
-        report = messenger.Messenger(forumProcessList, api, db)
+        report = messenger.Messenger(forumProcessList, api, db, bbmech)
 
 logger.debug("---Forum Check Script Completed---")
 

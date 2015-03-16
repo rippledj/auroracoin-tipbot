@@ -121,6 +121,7 @@ class Payload:
                 last_post = db.get_last_post(site_name)
                 for entry in feed.entries:
                     prepared_post = {}
+                    print entry.category
                     # Get updated and published times from post object and created datetime objects
                     post_updated_datetime_list = entry.updated.split("T", 2)
                     post_updated_date = post_updated_datetime_list[0]
@@ -129,8 +130,10 @@ class Payload:
                     post_updated_datetime = datetime.datetime.strptime(post_updated_date + " " + post_updated_time, "%Y-%m-%d %H:%M:%S")
                     # get the post id
                     post_id_raw = entry.id.split("#", 2)
+                    thread_id = entry.id.split("?", 2)[1].split("&", 2)[0].replace("t=", "")
                     # prepare entry data to pass to parser
-                    prepared_post['id'] = post_id_raw[1].replace("p", "")
+                    prepared_post['post_id'] = post_id_raw[1].replace("p", "")
+                    prepared_post['id'] = thread_id + "-" + prepared_post['post_id']
                     prepared_post['site'] = site_name
                     prepared_post['username'] = entry.author
                     prepared_post['text'] = entry.content[0]['value']
@@ -144,21 +147,21 @@ class Payload:
                         # Enter new last post if new one found
                         if first_entry == True:
                             if last_post is None:
-                                db.insert_new_last_post(site_name, "0" , prepared_post['id'], post_created_datetime, post_updated_datetime)
+                                db.insert_new_last_post(site_name, "0" , prepared_post['post_id'], post_created_datetime, post_updated_datetime)
                                 last_post = db.get_last_post(site_name)
                                 self.log.debug("First Last Post for site: %s Inserted to database: %s", (site_name, prepared_post['id']))
-                            elif int(prepared_post['id']) > int(last_post['thread_id']):
-                                db.insert_new_last_post(site_name, "0" , prepared_post['id'], post_created_datetime, post_updated_datetime)
-                                self.log.debug("New Last Post Inserted to database: %s", (prepared_post['id']))
+                            elif int(prepared_post['post_id']) > int(last_post['thread_id']):
+                                db.insert_new_last_post(site_name, "0" , prepared_post['post_id'], post_created_datetime, post_updated_datetime)
+                                self.log.debug("New Last Post Inserted to database: %s", (prepared_post['post_id']))
                             first_entry = False
                         # check if post should be parsed and parse
-                        if post_updated_datetime == post_created_datetime and int(prepared_post['id']) > int(last_post['thread_id']):
+                        if post_updated_datetime == post_created_datetime and int(prepared_post['post_id']) > int(last_post['thread_id']):
                             self.parseTextToPayload(prepared_post, str(post_created_datetime))
-                        elif int(prepared_post['id']) == int(last_post['thread_id']):
+                        elif int(prepared_post['post_id']) == int(last_post['thread_id']):
                             self.log.debug("Last post found: %s" % last_post['thread_id'])
                             last_post_found = True
                         else: 
-                            self.log.debug("Skipping previous post: %s" % prepared_post['id'])
+                            self.log.debug("Skipping previous post: %s" % prepared_post['post_id'])
                         # if last post is still not found in the feed
                         # need to go to each URL until finding last post
                     else:
@@ -166,19 +169,19 @@ class Payload:
                             if last_post is None:
                                 db.insert_new_last_post(site_name, "0" , prepared_post['id'], post_updated_datetime, post_updated_datetime)
                                 last_post = db.get_last_post(site_name)
-                                self.log.debug("First Last Post for site: %s Inserted to database: %s", (site_name, prepared_post['id']))
-                            elif int(prepared_post['id']) > int(last_post['thread_id']):
-                                db.insert_new_last_post(site_name, "0" , prepared_post['id'], post_updated_datetime, post_updated_datetime)
-                                self.log.debug("New Last Post Inserted to database: %s", (prepared_post['id']))
+                                self.log.debug("First Last Post for site: %s Inserted to database: %s", (site_name, prepared_post['post_id']))
+                            elif int(prepared_post['post_id']) > int(last_post['thread_id']):
+                                db.insert_new_last_post(site_name, "0" , prepared_post['post_id'], post_updated_datetime, post_updated_datetime)
+                                self.log.debug("New Last Post Inserted to database: %s", (prepared_post['post_id']))
                             first_entry = False
                         # check if post should be parsed and parse
-                        if int(prepared_post['id']) > int(last_post['thread_id']):
+                        if int(prepared_post['post_id']) > int(last_post['thread_id']):
                             self.parseTextToPayload(prepared_post, str(post_updated_datetime))
-                        elif int(prepared_post['id']) == int(last_post['thread_id']):
+                        elif int(prepared_post['post_id']) == int(last_post['thread_id']):
                             self.log.debug("Last post found: %s" % last_post['thread_id'])
                             last_post_found = True
                         else:
-                            self.log.debug("Skipping previous post: %s" % prepared_post['id'])
+                            self.log.debug("Skipping previous post: %s" % prepared_post['post_id'])
                         # if last post is still not found in the feed
                         # need to go to each URL until finding last post
             else:
