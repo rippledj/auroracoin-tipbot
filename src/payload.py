@@ -121,7 +121,6 @@ class Payload:
                 last_post = db.get_last_post(site_name)
                 for entry in feed.entries:
                     prepared_post = {}
-                    print entry.category
                     # Get updated and published times from post object and created datetime objects
                     post_updated_datetime_list = entry.updated.split("T", 2)
                     post_updated_date = post_updated_datetime_list[0]
@@ -131,9 +130,10 @@ class Payload:
                     # get the post id
                     post_id_raw = entry.id.split("#", 2)
                     thread_id = entry.id.split("?", 2)[1].split("&", 2)[0].replace("t=", "")
+                    forum_id =  entry['tags'][0]['scheme'].split("=", 2)[1]
                     # prepare entry data to pass to parser
                     prepared_post['post_id'] = post_id_raw[1].replace("p", "")
-                    prepared_post['id'] = thread_id + "-" + prepared_post['post_id']
+                    prepared_post['id'] = forum_id + "-" + thread_id + "-" + prepared_post['post_id']
                     prepared_post['site'] = site_name
                     prepared_post['username'] = entry.author
                     prepared_post['text'] = entry.content[0]['value']

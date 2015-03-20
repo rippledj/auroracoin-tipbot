@@ -92,7 +92,7 @@ class Messenger:
                     if api.profile == "bland":
                         publish_post = requests.post(api.new_post_url + "&parent_id=" +  message["thread_id"] + "&message=" + message_text)
                     elif api.profile == "phpbb":
-                        thread_id = message[0].split("-", 2)
+                        thread_id = message[0].split("-", 3)
                         bbmech.post(api.post_url, thread_id[0], thread_id[1], message_text, api.api_type)
                 elif message[2] == "private":
                     print "---Email Message---"
