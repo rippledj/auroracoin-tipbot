@@ -118,7 +118,11 @@ class Payload:
                 feed = feedparser.parse(feed_response.content)
                 site_name = feed.feed.title
                 # Get last post ID    
-                last_post = db.get_last_post(site_name)
+                try:    
+                    last_post = db.get_last_post(site_name)
+                except Exception as e:
+                    # initialize last_post to unmatchable
+                    last_post = db.get_last_post(site_name, 0)
                 for entry in feed.entries:
                     prepared_post = {}
                     # Get updated and published times from post object and created datetime objects
@@ -147,18 +151,18 @@ class Payload:
                         # Enter new last post if new one found
                         if first_entry == True:
                             if last_post is None:
-                                db.insert_new_last_post(site_name, "0" , prepared_post['post_id'], post_created_datetime, post_updated_datetime)
+                                db.insert_new_last_post(site_name, forum_id, thread_id, prepared_post['post_id'], post_created_datetime, post_updated_datetime)
                                 last_post = db.get_last_post(site_name)
-                                self.log.debug("First Last Post for site: %s Inserted to database: %s", (site_name, prepared_post['id']))
-                            elif int(prepared_post['post_id']) > int(last_post['thread_id']):
-                                db.insert_new_last_post(site_name, "0" , prepared_post['post_id'], post_created_datetime, post_updated_datetime)
+                                self.log.debug("First Last Post for site: %s Post number: %s" % (site_name, prepared_post['post_id']))
+                            elif int(prepared_post['post_id']) > int(last_post['post_id']):
+                                db.insert_new_last_post(site_name, forum_id, thread_id, prepared_post['post_id'], post_created_datetime, post_updated_datetime)
                                 self.log.debug("New Last Post Inserted to database: %s", (prepared_post['post_id']))
                             first_entry = False
                         # check if post should be parsed and parse
-                        if post_updated_datetime == post_created_datetime and int(prepared_post['post_id']) > int(last_post['thread_id']):
+                        if post_updated_datetime == post_created_datetime and int(prepared_post['post_id']) > int(last_post['post_id']):
                             self.parseTextToPayload(prepared_post, str(post_created_datetime))
-                        elif int(prepared_post['post_id']) == int(last_post['thread_id']):
-                            self.log.debug("Last post found: %s" % last_post['thread_id'])
+                        elif int(prepared_post['post_id']) == int(last_post['post_id']):
+                            self.log.debug("Last post found: %s" % last_post['post_id'])
                             last_post_found = True
                         else: 
                             self.log.debug("Skipping previous post: %s" % prepared_post['post_id'])
@@ -167,18 +171,18 @@ class Payload:
                     else:
                         if first_entry == True:
                             if last_post is None:
-                                db.insert_new_last_post(site_name, "0" , prepared_post['id'], post_updated_datetime, post_updated_datetime)
+                                db.insert_new_last_post(site_name, forum_id, thread_id, prepared_post['post_id'], post_updated_datetime, post_updated_datetime)
                                 last_post = db.get_last_post(site_name)
-                                self.log.debug("First Last Post for site: %s Inserted to database: %s", (site_name, prepared_post['post_id']))
+                                self.log.debug("First Last Post for site: %s Inserted to database: %s" % (site_name, prepared_post['post_id']))
                             elif int(prepared_post['post_id']) > int(last_post['thread_id']):
-                                db.insert_new_last_post(site_name, "0" , prepared_post['post_id'], post_updated_datetime, post_updated_datetime)
+                                db.insert_new_last_post(site_name, forum_id, thread_id, prepared_post['post_id'], post_updated_datetime, post_updated_datetime)
                                 self.log.debug("New Last Post Inserted to database: %s", (prepared_post['post_id']))
                             first_entry = False
                         # check if post should be parsed and parse
-                        if int(prepared_post['post_id']) > int(last_post['thread_id']):
+                        if int(prepared_post['post_id']) > int(last_post['post_id']):
                             self.parseTextToPayload(prepared_post, str(post_updated_datetime))
-                        elif int(prepared_post['post_id']) == int(last_post['thread_id']):
-                            self.log.debug("Last post found: %s" % last_post['thread_id'])
+                        elif int(prepared_post['post_id']) == int(last_post['post_id']):
+                            self.log.debug("Last post found: %s" % last_post['post_id'])
                             last_post_found = True
                         else:
                             self.log.debug("Skipping previous post: %s" % prepared_post['post_id'])
