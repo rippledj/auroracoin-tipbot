@@ -140,7 +140,7 @@ class Payload:
                     prepared_post['id'] = forum_id + "-" + thread_id + "-" + prepared_post['post_id']
                     prepared_post['site'] = site_name
                     prepared_post['username'] = entry.author
-                    prepared_post['text'] = entry.content[0]['value']
+                    prepared_post['text'] = re.sub('<[^<]+?>', '', entry.content[0]['value']).replace("S", " ")
                     if hasattr(entry, "published"):
                         post_created_datetime_list = entry.published.split("T", 2)
                         post_created_date = post_created_datetime_list[0]
@@ -151,11 +151,11 @@ class Payload:
                         # Enter new last post if new one found
                         if first_entry == True:
                             if last_post is None:
-                                db.insert_new_last_post(site_name, forum_id, thread_id, prepared_post['post_id'], post_created_datetime, post_updated_datetime)
-                                last_post = db.get_last_post(site_name)
+                                db.insert_new_last_post(api.api_site, forum_id, thread_id, prepared_post['post_id'], post_created_datetime, post_updated_datetime)
+                                last_post = db.get_last_post(api.api_site)
                                 self.log.debug("First Last Post for site: %s Post number: %s" % (site_name, prepared_post['post_id']))
                             elif int(prepared_post['post_id']) > int(last_post['post_id']):
-                                db.insert_new_last_post(site_name, forum_id, thread_id, prepared_post['post_id'], post_created_datetime, post_updated_datetime)
+                                db.insert_new_last_post(api.api_site, forum_id, thread_id, prepared_post['post_id'], post_created_datetime, post_updated_datetime)
                                 self.log.debug("New Last Post Inserted to database: %s", (prepared_post['post_id']))
                             first_entry = False
                         # check if post should be parsed and parse
@@ -171,11 +171,11 @@ class Payload:
                     else:
                         if first_entry == True:
                             if last_post is None:
-                                db.insert_new_last_post(site_name, forum_id, thread_id, prepared_post['post_id'], post_updated_datetime, post_updated_datetime)
-                                last_post = db.get_last_post(site_name)
+                                db.insert_new_last_post(api.api_site, forum_id, thread_id, prepared_post['post_id'], post_updated_datetime, post_updated_datetime)
+                                last_post = db.get_last_post(api.api_site)
                                 self.log.debug("First Last Post for site: %s Inserted to database: %s" % (site_name, prepared_post['post_id']))
                             elif int(prepared_post['post_id']) > int(last_post['thread_id']):
-                                db.insert_new_last_post(site_name, forum_id, thread_id, prepared_post['post_id'], post_updated_datetime, post_updated_datetime)
+                                db.insert_new_last_post(api.api_site, forum_id, thread_id, prepared_post['post_id'], post_updated_datetime, post_updated_datetime)
                                 self.log.debug("New Last Post Inserted to database: %s", (prepared_post['post_id']))
                             first_entry = False
                         # check if post should be parsed and parse
@@ -212,6 +212,7 @@ class Payload:
         command_found = False
         command_valid = False
         # look for REGEX for +AURtip and take it plus next three expressions.
+        print post['text']
         if re.findall(r"(^|\s)[\+][aA][uU][rR][tT][iI][pP](\s|$)", post['text']):
             self.log.debug("AURtip Command Found in post: %s %s"% (post['id'], post['username']))
             # Make a list of strings to be used in the command parse.  Maybe more than one command per post.

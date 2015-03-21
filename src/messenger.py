@@ -41,10 +41,10 @@ class Messenger:
         count = 0
         # authenticate into the phpbb
         # TODO: set to only authenticate if the message count > 0
-        if api.api_type == "phpbb" and count > 0:
-            bbmech.authenticate(api.login_url, api.username, api.password, api.api_type)
+        if api.api_type == "phpbb" and num_messages > 0:
             self.log.debug("---Authetication to phpbb site---")
-        else:
+            bbmech.authenticate(api.login_url, api.username, api.password, api.api_type)
+        if num_messages == 0:
             self.log.debug("---No Messages to Send---")
         for message in self.messages:
             count += 1
@@ -70,15 +70,15 @@ class Messenger:
                 if previous_response_destination == "public":
                     print "---Forum Message---"
                     print message_text
-                    if api.profile == "bland":
+                    if api.api_type == "bland":
                         publish_post = requests.post(api.new_post_url + "&parent_id=" +  message["thread_id"] + "&message=" + message_text)
-                    elif api.profile == "phpbb":
+                    elif api.api_type == "phpbb":
                         thread_id = message[0].split("-", 2)
-                        bbmech.post(api.post_url, thread_id[0], thread_id[1], message_text, api.api_type)
+                        bbmech.post(api.post_url, thread_id[0], thread_id[1], thread_id[2], message_text, api.api_type)
                 elif previous_response_destination == "private":
                     print "---Email Message---"
                     print message_text
-                    #self.send_mail(message[1], message_text, db)
+                    self.send_mail(api.api_site, message[1], message_text, db)
                 # refresh the message thread_id and attach new text
                 previous_response_thread_id = message[0]
                 previous_response_username = message[1]
@@ -89,19 +89,19 @@ class Messenger:
                 if message[2] == "public":
                     print "---Forum Message---"
                     print message_text
-                    if api.profile == "bland":
+                    if api.api_type == "bland":
                         publish_post = requests.post(api.new_post_url + "&parent_id=" +  message["thread_id"] + "&message=" + message_text)
-                    elif api.profile == "phpbb":
+                    elif api.api_type == "phpbb":
                         thread_id = message[0].split("-", 3)
-                        bbmech.post(api.post_url, thread_id[0], thread_id[1], message_text, api.api_type)
+                        bbmech.post(api.post_url, thread_id[0], thread_id[1], thread_id[2], message_text, api.api_type)
                 elif message[2] == "private":
                     print "---Email Message---"
                     print message_text
-                    #self.send_mail(message[1], message_text, db)
+                    self.send_mail(api.api_site, message[1], message_text, db)
         self.log.debug("--Messenger Script Finished--")   
                 
-    def send_mail(self, username, message_text, db):
-        email_to = db.get_user_email(username)
+    def send_mail(self, site, username, message_text, db):
+        email_to = db.get_user_email(site, username)
         msg = MIMEText(message_text)
         msg['Subject'] = Messenger.EMAIL_SUBJECT
         msg['To'] = "joseph.lee.esl@gmail.com"

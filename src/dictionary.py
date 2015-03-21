@@ -16,7 +16,7 @@ class Dictionary:
     def __init__(self, language):
         if language == "english":
             self.MESSAGES_AUR = "AUR"
-            self.MESSAGES_INFO = "Account Info: "
+            self.MESSAGES_INFO = "Here is your Aurtip account info for: "
             self.MESSAGES_USERNAME = "Username: "
             self.MESSAGES_EMAIL_ADDRESS = "Email Address: "
             self.MESSAGES_RECEIVE_PUBKEY = "Withdrawl address: "
@@ -49,7 +49,7 @@ class Dictionary:
             self.MESSAGES_INSUFFICIENT_BALANCE = "However, your balance is only "
             self.MESSAGES_EMAIL_CHANGE = "You've changed your account email. "
             self.MESSAGES_ADDRESS_CHANGE = "You've changed your account recieving address to "
-            self.MESSAGES_BOTTOM_LINE = "Thanks for using AURtip.  Instructions are avaialable at http://104.236.66.174/aurtip.html"
+            self.MESSAGES_BOTTOM_LINE = "Thanks for using AURtip.  Instructions are avaialable at http://104.236.66.174/tipbot/tutorial.html"
             self.MESSAGES_PREFERENCES_CHANGE_ERROR = "There was an error with your request. "
             self.MESSAGES_ONFILE_ADDRESS = "Onfile Auroracoin Public Address: "
             self.MESSAGES_AUTO_WITHDRAW = "Auto Withdraw: "

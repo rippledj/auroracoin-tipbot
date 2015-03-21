@@ -59,8 +59,8 @@ logger.addHandler(ch)
 # define connection settings
 DB_PROFILE = "mysql" 
 RPC_PROFILE = "auroracoind"
-#API_ROUTES = {"test": ["test"], "bland": ["bland"], "phpbb": ["auroraspjall", "jeppaspjall", "skyttur", "islandrover", "blyfotur", "kruser", "mbclub"]} 
-API_ROUTES = {"phpbb": ["auroraspjall", "jeppaspjall", "skyttur", "islandrover", "blyfotur", "kruser", "mbclub"]} 
+API_ROUTES = {"test": ["test"], "phpbb": ["auroraspjall", "jeppaspjall", "skyttur", "islandrover", "blyfotur", "kruser", "mbclub"]} 
+#API_ROUTES = {"phpbb": ["auroraspjall", "jeppaspjall", "skyttur", "islandrover", "blyfotur", "kruser", "mbclub"]} 
 #API_ROUTES = {"test": ["test"]}
 
 # create abstracted objects for db and rpc connections based on settings defined above
@@ -80,7 +80,7 @@ for api_profile, api_sites in API_ROUTES.items():
         # Build payload from an API source
         forumPayload = payload.Payload(api_profile, api, db)
         # Process the payload into command calls and return messages to users
-        forumProcessList = payloadProcessor.PayloadProcessor(forumPayload.payload, db, rpc, exchange)
+        forumProcessList = payloadProcessor.PayloadProcessor(forumPayload.payload, api, db, rpc, exchange)
         # Process messages into forum posts and emails
         report = messenger.Messenger(forumProcessList, api, db, bbmech)
 

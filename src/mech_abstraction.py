@@ -58,6 +58,6 @@ class Mechanizer:
         self.br.form["subject"] = subject
         self.br.form["message"] = message
         self.br.method = "POST"
-        time.sleep(15)
+        time.sleep(5)
         self.br.submit(nr=2)
-        self.log.debug("---Mechanizer Post Complete for thread: %s post: %s ---" % (forum, thread))
+        self.log.debug("---Mechanizer Post Complete for forum: %s thread: %s ---" % (forum, thread))

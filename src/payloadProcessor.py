@@ -21,7 +21,8 @@ import decimal
 COMMAND_LIST = ["history", "tip", "info", "accept", "reject", "withdraw", "noemail", "balance", "pool", "autowithdraw", "unregister"]
 
 class PayloadProcessor:
-    def __init__(self, payload, db, rpc, exchange):
+    def __init__(self, payload, api, db, rpc, exchange):
+        self.api_site = api.api_site
         self.USD_rate = exchange.USD_rate
         self.messages = []
         self.rpc = rpc
@@ -187,6 +188,7 @@ class PayloadProcessor:
                 self.log.debug("Tip %s has already been accepted, rejected, or withdrawn for %s" % (unique_id, username))
             
     def payloadTip(self, item, db, rpc):
+        
         # checking amounts and addresses are appropirate in number
         if len(item['recipient']) != len(item['amount']) or len(item['recipient']) != 1 or len(item['amount']) != 1:
             self.log.debug("Wrong number of recipients or amounts in post %s" % item['thread_id'])
@@ -278,7 +280,7 @@ class PayloadProcessor:
         import dictionary
         dictionary = dictionary.Dictionary("english")
         if type == "info":
-            self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_INFO))
+            self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_INFO + self.api_site))
             self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_USERNAME + data[4]))
             self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_EMAIL_ADDRESS + data[5]))
             self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_REGISTRATION_DATE + str(data[0])))
