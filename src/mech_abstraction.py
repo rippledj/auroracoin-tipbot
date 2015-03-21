@@ -52,12 +52,13 @@ class Mechanizer:
         response = self.br.submit()
         self.log.debug("---Authentication Script Finished for %s ---" % username)
 
-    def post(self, post_url, forum, thread, subject, message, profile_type):
+    def post(self, post_url, forum, thread, message, profile_type):
         self.br.open(post_url + '&f=' + forum + '&t=' + thread)
         self.br.select_form(nr=1)
-        self.br.form["subject"] = subject
+        self.br.form["subject"] = "Aurtip Response"
         self.br.form["message"] = message
         self.br.method = "POST"
         time.sleep(5)
         self.br.submit(nr=2)
         self.log.debug("---Mechanizer Post Complete for forum: %s thread: %s ---" % (forum, thread))
+        time.sleep(15)

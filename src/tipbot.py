@@ -59,7 +59,7 @@ logger.addHandler(ch)
 # define connection settings
 DB_PROFILE = "mysql" 
 RPC_PROFILE = "auroracoind"
-API_ROUTES = {"test": ["test"], "phpbb": ["auroraspjall", "jeppaspjall", "skyttur", "islandrover", "blyfotur", "kruser", "mbclub"]} 
+API_ROUTES = {"phpbb": ["auroraspjall", "jeppaspjall", "skyttur", "islandrover", "blyfotur", "kruser", "mbclub"]} 
 #API_ROUTES = {"phpbb": ["auroraspjall", "jeppaspjall", "skyttur", "islandrover", "blyfotur", "kruser", "mbclub"]} 
 #API_ROUTES = {"test": ["test"]}
 
@@ -87,7 +87,7 @@ for api_profile, api_sites in API_ROUTES.items():
 logger.debug("---Forum Check Script Completed---")
 
 # Check all user addresses for deposits
-bankPayload = bank.BankPayload("test", api, db, rpc)
+#bankPayload = bank.BankPayload("test", api, db, rpc)
 
 logger.debug("---Bank Script Completed---")
 

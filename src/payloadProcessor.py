@@ -69,7 +69,7 @@ class PayloadProcessor:
                             self.log.debug("User registration 'accept' command for user %s in post %s" % (item['username'], item['thread_id']))
                             # change user preference to automatically accept the funds
                             db.change_user_preference(item['site'], item['username'], "registered", 1)
-                            deposit_address = db.get_user_deposit_address(item['username'])
+                            deposit_address = db.get_user_deposit_address(item['site'], item['username'])
                             self.buildMessage("register", item['thread_id'], item['username'], deposit_address)
                         elif command == 'reject':
                             self.payloadReject(item['username'], item['tip_id'])
@@ -85,7 +85,7 @@ class PayloadProcessor:
                                 self.buildMessage("no-email", item['thread_id'], item['username'])
                             else:
                                 self.log.debug("Balance command request from user %s in post %s" % (item['username'], item['thread_id']))
-                                self.buildMessage("balance", item['thread_id'], item['username'], db.get_balance(item['username']))
+                                self.buildMessage("balance", item['thread_id'], item['username'], db.get_balance(item['site'], item['username']))
                         elif command == 'pool':
                             self.log.debug("Preference change request found: 'pool' for user %s in post %s" % (item['username'], item['thread_id']))
                             # change user preference to pool funds and not send tip right away
@@ -215,9 +215,9 @@ class PayloadProcessor:
                     # build a tip object
                     tip = [item['username'], recipient, item['amount'][0], item['thread_id'], item['datetime']]
                     # remove amount from sender balance
-                    db.adjust_sender_balance(item['username'], item['amount'][0])
+                    db.adjust_sender_balance(item['site'], item['username'], item['amount'][0])
                     # get user tip preferences from database
-                    tip_preferences = db.get_user_tip_preferences(recipient)
+                    tip_preferences = db.get_user_tip_preferences(item['site'], recipient)
                     # if auto withdraw is user pref
                     if tip_preferences[0] == False:
                         db.store_tip("withdrawn", tip)
@@ -229,8 +229,8 @@ class PayloadProcessor:
                         self.buildMessage("tip-recipient-autowd", item['thread_id'], recipient , tip)
                     # if user registeration verified
                     elif tip_preferences[1] == True:
-                        db.store_tip("accepted", tip)
-                        db.adjust_recipient_balance(recipient, amount)
+                        db.store_tip("accepted", item['site'], tip)
+                        db.adjust_recipient_balance(item['site'], recipient, amount)
                         # for normal tips for verified users tips
                         self.log.debug("Tip accepted and stored in database for post %s" % (item['thread_id']))
                         # build messages
@@ -324,13 +324,13 @@ class PayloadProcessor:
                     self.messages.append((thread_id, recipient, "private", "none"))
                 else:
                     for item in data[3]:
-                        self.messages.append((thread_id, recipient, "private", str(item['id']) + "_A" + "\t" + str(item['datetime']) + "\t" + item['amount'] + "\t" + item['receive_username']))
+                        self.messages.append((thread_id, recipient, "private", str(item['id']) + "_A" + "\t" + str(item['datetime']) + "\t" + item['amount'] + "\t" + item['sender_username']))
                 self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_ACCOUNT_TIP_SENT_HISORY))
                 if len(data[4]) == 0:
                     self.messages.append((thread_id, recipient, "private", "none"))
                 else:
                     for item in data[4]:
-                        self.messages.append((thread_id, recipient, "private", str(item['id']) + "_A" + "\t" + str(item['datetime']) + "\t" + item['amount'] + "\t" + item['sender_username']))
+                        self.messages.append((thread_id, recipient, "private", str(item['id']) + "_A" + "\t" + str(item['datetime']) + "\t" + item['amount'] + "\t" + item['receive_username']))
                 
         if type == "tip-sender":
             self.messages.append((thread_id, recipient, "public", dictionary.MESSAGES_TIP_SENDER + data[1]))
