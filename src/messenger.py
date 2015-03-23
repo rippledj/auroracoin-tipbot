@@ -36,12 +36,16 @@ class Messenger:
         self.messages = messages.messages
         message_text = ""
         # Build messages from the message payload
+        count = 0
         first_time = True
         num_messages = len(self.messages)
-        count = 0
-        # authenticate into the phpbb
-        # TODO: set to only authenticate if the message count > 0
-        if api.api_type == "phpbb" and num_messages > 0:
+        num_public_messages = 0
+        #check number of public messages
+        for message in self.messages:
+            if message[2] == "public":
+                num_public_messages += 1
+        # authenticate into the phpbb if the message count > 0
+        if api.api_type == "phpbb" and num_messages > 0 and num_public_messages > 0:
             self.log.debug("---Authetication to phpbb site---")
             bbmech.authenticate(api.login_url, api.username, api.password, api.api_type)
         if num_messages == 0:

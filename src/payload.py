@@ -213,7 +213,8 @@ class Payload:
     def parseTextToPayload(self, post, post_datetime):
         command_found = False
         command_valid = False
-        print post['text']
+        self.log.debug("---Post sent to parsing function---")
+        self.log.debug("%s" % post['text'])
         # look for REGEX for +AURtip and take it plus next three expressions.
         if re.findall(r"(^|\s)[\+][aA][uU][rR][tT][iI][pP](\s|$)", post['text']):
             self.log.debug("AURtip Command Found in post: %s %s"% (post['id'], post['username']))
@@ -235,13 +236,9 @@ class Payload:
                             #print "Command: " + command[0]
                             command_list.append(command[0])
                     # if it has only numbers, or numbers and decimal
-                    if re.findall(r"^[0-9]{1,6}\_[A]$", element):
-                        tip_id = re.findall(r"^[0-9]{1,}\_[A]$", element)
-                        #print "Tip ID: " + tip_id[0]
-                        payload_item['tip_id'] = tip_id[0]
-                    if re.findall(r"^[0-9]{1,6}\.?[0-9]{1,8}$", element):
-                        amount = re.findall(r"^[0-9]{1,6}\.?[0-9]{1,8}$", element)
-                        #print "Amount: " + amount[0]
+                    if re.findall(r"^[0-9]{,6}?\.?[0-9]{1,8}$", element):
+                        amount = re.findall(r"^[0-9]{,6}?\.?[0-9]{1,8}$", element)
+                        print "Amount: " + amount[0]
                         amount_list.append(amount[0])
                     # if it has '@' it is a username
                     if re.findall(r"[\@][0-9a-zA-Z]{1,}$", element):

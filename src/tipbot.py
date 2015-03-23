@@ -89,7 +89,7 @@ for api_profile, api_sites in API_ROUTES.items():
 logger.debug("---Forum Check Script Completed---")
 
 # Check all user addresses for deposits
-#bankPayload = bank.BankPayload("test", api, db, rpc)
+bankPayload = bank.BankPayload("test", api, db, rpc)
 
 logger.debug("---Bank Script Completed---")
 

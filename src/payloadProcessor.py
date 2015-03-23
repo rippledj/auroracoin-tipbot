@@ -189,10 +189,10 @@ class PayloadProcessor:
                 self.log.debug("Tip %s has already been accepted, rejected, or withdrawn for %s" % (unique_id, username))
             
     def payloadTip(self, item, db, rpc):
-        
         # checking amounts and addresses are appropirate in number
         if len(item['recipient']) != len(item['amount']) or len(item['recipient']) != 1 or len(item['amount']) != 1:
             self.log.debug("Wrong number of recipients or amounts in post %s" % item['thread_id'])
+            self.log.debug("Len recipient: %s Len amount: %s" % (len(item['recipient']), len(item['amount'])))
             #append info to error message
             self.buildMessage("error-tip-command-conflict", item['thread_id'], item['username'])
         else:
@@ -292,9 +292,9 @@ class PayloadProcessor:
             else:
                 self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_RECEIVE_PUBKEY + data[1]))
             if data[3] == True:
-                self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_AUTO_WITHDRAW + " True"))
+                self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_AUTO_WITHDRAW + " False"))
             else:
-                self.messages.append((thread_id, recipient, "private",  dictionary.MESSAGES_AUTO_WITHDRAW + "False"))
+                self.messages.append((thread_id, recipient, "private",  dictionary.MESSAGES_AUTO_WITHDRAW + " True"))
         if type == "balance":
             self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_BALANCE + data + " AUR"))
         if type == "history":
@@ -363,7 +363,7 @@ class PayloadProcessor:
             self.messages.append((thread_id, recipient, "public", dictionary.MESSAGES_REGISTRATION_DEPOSIT_ADDRESS + data))
         if type == "error":
             self.messages.append((thread_id, recipient, "public", dictionary.MESSAGES_ERROR + data))
-        if type == "error-tip-commands-conflict":
+        if type == "error-tip-command-conflict":
             self.messages.append((thread_id, recipient, "public", dictionary.MESSAGES_ERROR_TIP_COMMAND_CONFLICT))
         if type == "error-back-pool-account":
             self.messages.append((thread_id, recipient, "public", dictionary.MESSAGES_BACK_POOL_ERROR))
