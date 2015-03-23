@@ -35,6 +35,17 @@ class PayloadProcessor:
         self.log.debug("---Payload Processor Starting---") 
         for item in reversed(payload):
             self.registrationCheck("user", item, db, rpc)
+            #parse item for commands, email address, bitcoin address, amount, recipeint, etc.
+            if len(item['recipient']) > 0 or len(item['amount']) > 0:
+                self.payloadTip(item, db, rpc)
+            if "address" in item:
+                self.log.debug("Change of public receive address requested for %s in post %s" % (item['username'], item['thread_id']))
+                db.change_user_receive_address(item['site'], item["username"], item['address'])
+                self.buildMessage("address-change", item['thread_id'], item['username'], item['address'])
+            if "email" in item:
+                self.log.debug("Change of email address requested for %s in post %s" % (item['username'], item['thread_id']))
+                db.change_user_email_address(item['site'], item["username"], item['email'])
+                self.buildMessage("email-change", item['thread_id'], item['username'])
             if len(item['commands']) > 0:
                 self.log.debug("Parsing payload commands from post %s" % item['thread_id'])
                 # process all explicit commands in payload
@@ -109,16 +120,6 @@ class PayloadProcessor:
                     else:
                         self.log.debug("Invalid command: '%s' included in post from user %s in post %s" % (command, item['username'], item['thread_id']))
                         #self.buildMessage("error", item['username'], command)
-            elif len(item['recipient']) > 0 or len(item['amount']) > 0:
-                self.payloadTip(item, db, rpc)
-            elif "address" in item:
-                self.log.debug("Change of public receive address requested for %s in post %s" % (item['username'], item['thread_id']))
-                db.change_user_receive_address(item['site'], item["username"], item['address'])
-                self.buildMessage("address-change", item['thread_id'], item['username'], item['address'])
-            elif "email" in item:
-                self.log.debug("Change of email address requested for %s in post %s" % (item['username'], item['thread_id']))
-                db.change_user_email_address(item['site'], item["username"], item['email'])
-                self.buildMessage("email-change", item['thread_id'], item['username'])
             
     def payloadWithdraw(self, item, db, rpc, address=None):
         withdraw_error = False
