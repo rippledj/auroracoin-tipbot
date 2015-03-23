@@ -33,7 +33,7 @@ class PayloadProcessor:
     
     def payloadProcessor(self, payload, db, rpc):
         self.log.debug("---Payload Processor Starting---") 
-        for item in payload:
+        for item in reversed(payload):
             self.registrationCheck("user", item, db, rpc)
             if len(item['commands']) > 0:
                 self.log.debug("Parsing payload commands from post %s" % item['thread_id'])

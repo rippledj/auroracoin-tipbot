@@ -56,6 +56,7 @@ logger.addHandler(ch)
 
 # Main Function #
 #               #
+logger.debug("###### Starting Main Function TIPBOT v1.0 ######")
 
 # define connection settings
 DB_PROFILE = "mysql" 
