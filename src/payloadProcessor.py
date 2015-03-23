@@ -324,6 +324,7 @@ class PayloadProcessor:
                 if len(data[3]) == 0:
                     self.messages.append((thread_id, recipient, "private", "none"))
                 else:
+                    print (data[3])
                     for item in data[3]:
                         self.messages.append((thread_id, recipient, "private", str(item['id']) + "_A" + "\t" + str(item['datetime']) + "\t" + item['amount'] + "\t" + item['sender_username']))
                 self.messages.append((thread_id, recipient, "private", dictionary.MESSAGES_ACCOUNT_TIP_SENT_HISORY))

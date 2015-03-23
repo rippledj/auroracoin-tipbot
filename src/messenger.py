@@ -108,12 +108,12 @@ class Messenger:
         email_to = db.get_user_email(site, username)
         msg = MIMEText(message_text)
         msg['Subject'] = Messenger.EMAIL_SUBJECT
-        msg['To'] = "joseph.lee.esl@gmail.com"
+        msg['To'] = email_to
         msg['From'] = Messenger.EMAIL_FROM
         mail = smtplib.SMTP(Messenger.SMTP_SERVER, Messenger.SMTP_PORT)
         mail.starttls()
         mail.login(Messenger.SMTP_USERNAME, Messenger.SMTP_PASSWORD)
-        mail.sendmail(Messenger.EMAIL_FROM, "joseph.lee.esl@gmail.com", msg.as_string())
+        mail.sendmail(Messenger.EMAIL_FROM, email_to, msg.as_string())
         mail.quit()
         self.log.debug("Email sent to user %s" % username)
         
