@@ -119,10 +119,11 @@ class Payload:
                 site_name = feed.feed.title
                 # Get last post ID    
                 try:    
-                    last_post = db.get_last_post(site_name)
+                    last_post = db.get_last_post(api.api_site)
+                    self.log.debug("---Last Post: %s retreived from database---" % last_post['post_id'])
                 except Exception as e:
                     # initialize last_post to unmatchable
-                    last_post = db.get_last_post(site_name, 0)
+                    last_post = db.get_last_post(api.api_site, 0)
                 for entry in feed.entries:
                     prepared_post = {}
                     # Get updated and published times from post object and created datetime objects
@@ -174,8 +175,8 @@ class Payload:
                             if last_post is None:
                                 db.insert_new_last_post(api.api_site, forum_id, thread_id, prepared_post['post_id'], post_updated_datetime, post_updated_datetime)
                                 last_post = db.get_last_post(api.api_site)
-                                self.log.debug("First Last Post for site: %s Inserted to database: %s" % (site_name, prepared_post['post_id']))
-                            elif int(prepared_post['post_id']) > int(last_post['thread_id']):
+                                self.log.debug("First Last Post for site: %s Inserted to database: %s" % (api.api_site, prepared_post['post_id']))
+                            elif int(prepared_post['post_id']) > int(last_post['post_id']):
                                 db.insert_new_last_post(api.api_site, forum_id, thread_id, prepared_post['post_id'], post_updated_datetime, post_updated_datetime)
                                 self.log.debug("New Last Post Inserted to database: %s", (prepared_post['post_id']))
                             first_entry = False
@@ -212,8 +213,8 @@ class Payload:
     def parseTextToPayload(self, post, post_datetime):
         command_found = False
         command_valid = False
-        # look for REGEX for +AURtip and take it plus next three expressions.
         print post['text']
+        # look for REGEX for +AURtip and take it plus next three expressions.
         if re.findall(r"(^|\s)[\+][aA][uU][rR][tT][iI][pP](\s|$)", post['text']):
             self.log.debug("AURtip Command Found in post: %s %s"% (post['id'], post['username']))
             # Make a list of strings to be used in the command parse.  Maybe more than one command per post.
