@@ -15,8 +15,11 @@
 import decimal
 import logging
 
+
 class BankPayload:
     def __init__(self, type, api, db, rpc):
+        import dictionary
+        dictionary = dictionary.Dictionary("english")
         self.log = logging.getLogger('__Aurtip__')
         self.log.debug("---Deposit Processor Started---")
         DEPOSIT_POOL_ACCOUNT = "deposit_pool"
@@ -44,7 +47,7 @@ class BankPayload:
                     # modify user balance amount and received to date amount in database
                     db.deposit_to_user(address['site'], address['username'], deposit_amount, address['deposit_pubkey'])
                     # append message for user and email
-                    
+                    forumMessenger.send_mail(address['site'], address['username'], dictioary.MESSAGES_DEPOSIT_EMAIL, db)
                     self.log.debug("Deposits found for %s user %s in address %s : %s" % (address['site'], address['username'], address['deposit_pubkey'], deposit_amount))
             if balance_found == True:
                 self.log.debug("---Deposits are being moved to a pool---")
@@ -60,9 +63,3 @@ class BankPayload:
                 new_balance_string = str('%.10g' % new_balance).strip()
                 self.log.critical("New deposit pool balance: %s" % (new_balance_string))
                 
-    def buildMessage(self, type, site, recipient, data=None):
-        # array to hold all messages
-        import dictionary
-        dictionary = dictionary.Dictionary("english")
-        if type == "deposit":
-            self.messages.append((site, recipient, "private", dictionary.MESSAGES_DEPOSIT + self.api_site))

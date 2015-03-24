@@ -141,7 +141,7 @@ class Payload:
                     prepared_post['id'] = forum_id + "-" + thread_id + "-" + prepared_post['post_id']
                     prepared_post['site'] = site_name
                     prepared_post['username'] = entry.author
-                    temp_text = re.sub('<br />', '', entry.content[0]['value'])
+                    temp_text = re.sub('<br />', ' ', entry.content[0]['value'])
                     prepared_post['text'] = re.sub('<[^<]+?>', '', temp_text).replace("S", " ")
                     if hasattr(entry, "published"):
                         post_created_datetime_list = entry.published.split("T", 2)

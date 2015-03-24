@@ -84,7 +84,7 @@ for api_profile, api_sites in API_ROUTES.items():
         # Process the payload into command calls and return messages to users
         forumProcessList = payloadProcessor.PayloadProcessor(forumPayload.payload, api, db, rpc, exchange)
         # Process messages into forum posts and emails
-        report = messenger.Messenger(forumProcessList, api, db, bbmech)
+        forumMessenger = messenger.Messenger(forumProcessList, api, db, bbmech)
 
 logger.debug("---Forum Check Script Completed---")
 
