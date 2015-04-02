@@ -1,3 +1,9 @@
+TODO:
+-email for deposits notification
+-log directory
+-logging to new file everyday
+-other method of rolling over logs
+
 Questions:
 
 2. Users recieve email and public post for received tips

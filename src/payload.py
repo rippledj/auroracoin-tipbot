@@ -134,8 +134,11 @@ class Payload:
                     post_updated_datetime = datetime.datetime.strptime(post_updated_date + " " + post_updated_time, "%Y-%m-%d %H:%M:%S")
                     # get the post id
                     post_id_raw = entry.id.split("#", 2)
-                    thread_id = entry.id.split("?", 2)[1].split("&", 2)[0].replace("t=", "")
-                    forum_id =  entry['tags'][0]['scheme'].split("=", 2)[1]
+                    try:
+                        thread_id = entry.id.split("?", 2)[1].split("&", 2)[0].replace("t=", "")
+                        forum_id =  entry['tags'][0]['scheme'].split("=", 2)[1]
+                    except Exception as e:
+                        break
                     # prepare entry data to pass to parser
                     prepared_post['post_id'] = post_id_raw[1].replace("p", "")
                     prepared_post['id'] = forum_id + "-" + thread_id + "-" + prepared_post['post_id']

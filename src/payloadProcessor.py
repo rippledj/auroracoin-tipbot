@@ -221,7 +221,7 @@ class PayloadProcessor:
                     tip_preferences = db.get_user_tip_preferences(item['site'], recipient)
                     # if auto withdraw is user pref
                     if tip_preferences[0] == False:
-                        db.store_tip("withdrawn", tip)
+                        db.store_tip("withdrawn",item['site'], tip)
                         self.payloadAutoWithdraw(recipient, db, item)
                         self.log.debug("Tip has been autowithdrawn in post %s" % (item['thread_id']))
                         # withdraw to public address of user
@@ -239,7 +239,7 @@ class PayloadProcessor:
                         self.buildMessage("tip-recipient-registered", item['thread_id'], recipient, tip)
                     # if user registration is not verified
                     else:
-                        db.store_tip("none", tip)
+                        db.store_tip("none", item['site'], tip)
                         self.log.debug("Tip stored in database, waiting for accept for post %s" % (item['thread_id']))
                         # build messages
                         self.buildMessage("tip-sender", item['thread_id'], item['username'], tip)
