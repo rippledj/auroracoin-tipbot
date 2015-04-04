@@ -61,7 +61,7 @@ logger.debug("###### Starting Main Function TIPBOT v1.0 ######")
 # define connection settings
 DB_PROFILE = "mysql" 
 RPC_PROFILE = "auroracoind"
-API_ROUTES = {"phpbb": ["auroraspjall", "skyttur", "islandrover", "blyfotur", "kruser", "mbclub"]} 
+API_ROUTES = {"bland": ["bland"]} 
 #API_ROUTES = {"phpbb": ["auroraspjall", "jeppaspjall", "skyttur", "islandrover", "blyfotur", "kruser", "mbclub"]} 
 #API_ROUTES = {"test": ["test"]}
 
@@ -79,24 +79,23 @@ for api_profile, api_sites in API_ROUTES.items():
         logger.debug("---Starting %s API Profile for %s site---" % (api_profile, site))
         # Create api object for the specific type and site to parse
         try:
-            pass
             api = api_abstraction.ApiConnection(api_profile, site)
         except Exception as e:
             logger.debug("---API CONNECTION FAIL!!  %s API Profile for %s site---" % (api_profile, site))
+            import traceback, os.path
+            top = traceback.extract_stack()[-1]
+            print ', '.join([type(e).__name__, os.path.basename(top[0]), str(top[1])])
+            print e
             fail = True
         # Build payload from an API source
-        try:
-            pass
-            forumPayload = payload.Payload(api_profile, api, db)
-        except Exception as e:
-            logger.debug("---PAYLOAD BUILD FAILED!!  %s API Profile for %s site---" % (api_profile, site))
-            fail = True
+        forumPayload = payload.Payload(api_profile, api, db)
         try:
             pass
             # Process the payload into command calls and return messages to users
             forumProcessList = payloadProcessor.PayloadProcessor(forumPayload.payload, api, db, rpc, exchange)
         except Exception as e:
             logger.debug("---PAYLOAD PROCESSING FAILED!!  %s API Profile for %s site---" % (api_profile, site))
+            print e
             fail = True
         try:
             pass
@@ -110,6 +109,6 @@ logger.debug("---Forum Check Script Completed---")
 
 # Check all user addresses for deposits
 bankMessenger = messenger.Messenger(db, bbmech)
-#bankPayload = bank.BankPayload("test", api, db, rpc, bankMessenger)
+bankPayload = bank.BankPayload("test", api, db, rpc, bankMessenger)
 
 logger.debug("---Bank Script Completed---")

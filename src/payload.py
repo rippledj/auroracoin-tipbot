@@ -58,13 +58,16 @@ class Payload:
                     first_new_post = True
                     # get the last date from database
                     try:    
-                        last_post = db.get_last_post("bland", item["category_id"])
+                        last_post = db.get_last_post(api.api_type, item["category_id"])
+                        last_post_created_datetime = datetime.datetime.strptime(str(last_post['created_datetime']), "%Y-%m-%d %H:%M:%S")
+                        last_post_updated_datetime = datetime.datetime.strptime(str(last_post['updated_datetime']), "%Y-%m-%d %H:%M:%S")
+                        self.log.debug("Category: %s - Last post [ID]: %s Created: %s Updated: %s" % (str(item["category_id"]), str(last_post['post_id']), str(last_post_created_datetime), str(last_post_updated_datetime)))
+                        last_post_in_db = True
                     except Exception as e:
                         # initialize last_post to unmatchable
-                        last_post = db.get_last_post("bland", 21)
-                    last_post_created_datetime = datetime.datetime.strptime(str(last_post['created_datetime']), "%Y-%m-%d %H:%M:%S")
-                    last_post_updated_datetime = datetime.datetime.strptime(str(last_post['updated_datetime']), "%Y-%m-%d %H:%M:%S")
-                    self.log.debug("Category: %s - Last post [ID]: %s Created: %s Updated: %s" % (str(item["category_id"]), str(last_post['thread_id']), str(last_post_created_datetime), str(last_post_updated_datetime)))
+                        self.log.debug("---No Last Post Found---")
+                        last_post_in_db = False
+                        
                     # While last post not found
                     while last_post_found == False:
                         threads_update_response = requests.get(api.threads_url + str(item["category_id"]) + "&limit=" + str(LIMIT) + "&offset=" + str(offset))
@@ -72,6 +75,7 @@ class Payload:
                             threads = json.loads(threads_update_response.content)
                             for post in threads["data"]:
                                 # Get time from post object
+                                post_id = post['id'].split("_",2)[1]
                                 post_updated_time_raw = post["updated_time"].split()
                                 post_date_list = post_updated_time_raw[0].split(".", 3)
                                 post_time_list = post_updated_time_raw[1].split(":", 3)
@@ -79,20 +83,21 @@ class Payload:
                                 post_created_time_raw = post["created_time"].split()
                                 post_date_list = post_created_time_raw[0].split(".", 3)
                                 post_time_list = post_created_time_raw[1].split(":", 3)
-                                post_created_datetime = datetime.datetime(int(post_date_list[2]), int(post_date_list[1]), int(post_date_list[0]), int(post_time_list[0]), int(post_time_list[1]), int(post_time_list[2])) 
-                                #self.log.debug("---Last post created datetime: %s This post created datetime: %s" % (last_post_created_datetime, post_created_datetime))
-                                #self.log.debug("---Last post updated datetime: %s This post updated datetime: %s" % (last_post_updated_datetime, post_updated_datetime))
-                                # put new last post in database if it's first one found
+                                post_created_datetime = datetime.datetime(int(post_date_list[2]), int(post_date_list[1]), int(post_date_list[0]), int(post_time_list[0]), int(post_time_list[1]), int(post_time_list[2]))
+                                if first_new_post == True:
+                                    self.log.debug("New Last Post Inserted to database: %s", (post['id']))
+                                    db.insert_new_last_post(api.api_site, item['category_id'], "0", post_id, post_created_datetime, post_updated_datetime)
+                                    if last_post_in_db == False:   
+                                        last_post = db.get_last_post(api.api_type, item["category_id"])
+                                        last_post_created_datetime = datetime.datetime.strptime(str(last_post['created_datetime']), "%Y-%m-%d %H:%M:%S")
+                                        last_post_updated_datetime = datetime.datetime.strptime(str(last_post['updated_datetime']), "%Y-%m-%d %H:%M:%S")
+                                        self.log.debug("Category: %s - Last post [ID]: %s Created: %s Updated: %s" % (str(item["category_id"]), str(last_post['post_id']), str(last_post_created_datetime), str(last_post_updated_datetime)))
+                                    first_new_post = False
                                 if post_updated_datetime < last_post_updated_datetime or post_updated_datetime == last_post_updated_datetime:
-                                    self.log.debug("Last post found: %s" % (str(last_post['thread_id'])))
+                                    self.log.debug("Last post found: %s" % (str(last_post['post_id'])))
                                     last_post_found = True
                                     break
-                                elif first_new_post == True:
-                                    self.log.debug("New Last Post Inserted to database: %s", (post['id']))
-                                    db.insert_new_last_post("bland", item['category_id'], post['id'], post_created_datetime, post_updated_datetime)
-                                    first_new_post = False
-                                if post['updated_time'] == post['created_time']:
-                                    # insert first post into database as last_post
+                                elif post['updated_time'] == post['created_time']:
                                     self.log.debug("Parsing new post: %s Posted at: %s %s  Page: %s" % (post["id"], str(post_created_datetime), str(post_updated_datetime), str(offset)))
                                     # prepare the post data to pass to parser
                                     prepared_post = {}
@@ -105,7 +110,7 @@ class Payload:
                                 else: 
                                     self.log.debug("Skipping updated post: %s" % post['id'])
                             if last_post_found == False:
-                                #increment the page variable.
+                                # increment the page variable.
                                 offset += 1
         if api.api_type == 'phpbb':
             feed_response = requests.get(api.feed_url)
