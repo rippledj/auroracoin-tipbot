@@ -102,6 +102,9 @@ for api_profile, api_sites in API_ROUTES.items():
             # Process messages into forum posts and emails
             forumMessenger = messenger.Messenger(db, bbmech, forumProcessList, api)
         except Exception as e:
+            import traceback, os.path
+            top = traceback.extract_stack()[-1]
+            print ', '.join([type(e).__name__, os.path.basename(top[0]), str(top[1])])
             print e
             logger.debug("---MESSAGE PROCESSING FAILED!!  %s API Profile for %s site---" % (api_profile, site))
             fail = True

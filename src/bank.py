@@ -46,8 +46,11 @@ class BankPayload:
                     # modify user balance amount and received to date amount in database
                     db.deposit_to_user(address['site'], address['username'], deposit_amount, address['deposit_pubkey'])
                     # append message for user and email
-                    messenger.send_mail(address['site'], address['username'], dictioary.MESSAGES_DEPOSIT_EMAIL, db)
+                    message = "Dear, " + address['username'] + "\n"
+                    message += dictionary.MESSAGES_DEPOSIT_EMAIL + str(deposit_amount) + " " + dictionary.MESSAGES_AUR
+                    messenger.send_mail(address['site'], address['username'], message, db)
                     self.log.debug("Deposits found for %s user %s in address %s : %s" % (address['site'], address['username'], address['deposit_pubkey'], deposit_amount))
+                    self.log.debug("Email sent to user %s" % address['username'])
             if balance_found == True:
                 self.log.debug("---Deposits are being moved to a pool---")
                 back_pool_address = rpc.bitcoin.getnewaddress("back_pool")

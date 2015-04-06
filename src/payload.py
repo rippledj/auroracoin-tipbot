@@ -44,74 +44,62 @@ class Payload:
         
     def getForumPayload(self, api, db):
         if api.api_type == 'bland':
-            # Paging constants
-            LIMIT = 30
-            offset = 0
-            # TODO: WRAPPER to get previous paging if the last post is not on the page
-            # API call to get the web-app forum
-            category_response = requests.get(api.categories_url)
-            if category_response.status_code == 200:
-                self.log.debug("---Categories Received---")
-                for item in json.loads(category_response.content):
-                    offset = 0
-                    last_post_found = False
-                    first_new_post = True
-                    # get the last date from database
-                    try:    
-                        last_post = db.get_last_post(api.api_type, item["category_id"])
-                        last_post_created_datetime = datetime.datetime.strptime(str(last_post['created_datetime']), "%Y-%m-%d %H:%M:%S")
-                        last_post_updated_datetime = datetime.datetime.strptime(str(last_post['updated_datetime']), "%Y-%m-%d %H:%M:%S")
-                        self.log.debug("Category: %s - Last post [ID]: %s Created: %s Updated: %s" % (str(item["category_id"]), str(last_post['post_id']), str(last_post_created_datetime), str(last_post_updated_datetime)))
-                        last_post_in_db = True
-                    except Exception as e:
-                        # initialize last_post to unmatchable
-                        self.log.debug("---No Last Post Found---")
-                        last_post_in_db = False
-                        
-                    # While last post not found
-                    while last_post_found == False:
-                        threads_update_response = requests.get(api.threads_url + str(item["category_id"]) + "&limit=" + str(LIMIT) + "&offset=" + str(offset))
-                        if threads_update_response.status_code == 200:
-                            threads = json.loads(threads_update_response.content)
-                            for post in threads["data"]:
-                                # Get time from post object
-                                post_id = post['id'].split("_",2)[1]
-                                post_updated_time_raw = post["updated_time"].split()
-                                post_date_list = post_updated_time_raw[0].split(".", 3)
-                                post_time_list = post_updated_time_raw[1].split(":", 3)
-                                post_updated_datetime = datetime.datetime(int(post_date_list[2]), int(post_date_list[1]), int(post_date_list[0]), int(post_time_list[0]), int(post_time_list[1]), int(post_time_list[2])) 
-                                post_created_time_raw = post["created_time"].split()
-                                post_date_list = post_created_time_raw[0].split(".", 3)
-                                post_time_list = post_created_time_raw[1].split(":", 3)
-                                post_created_datetime = datetime.datetime(int(post_date_list[2]), int(post_date_list[1]), int(post_date_list[0]), int(post_time_list[0]), int(post_time_list[1]), int(post_time_list[2]))
-                                if first_new_post == True:
-                                    self.log.debug("New Last Post Inserted to database: %s", (post['id']))
-                                    db.insert_new_last_post(api.api_site, item['category_id'], "0", post_id, post_created_datetime, post_updated_datetime)
-                                    if last_post_in_db == False:   
-                                        last_post = db.get_last_post(api.api_type, item["category_id"])
-                                        last_post_created_datetime = datetime.datetime.strptime(str(last_post['created_datetime']), "%Y-%m-%d %H:%M:%S")
-                                        last_post_updated_datetime = datetime.datetime.strptime(str(last_post['updated_datetime']), "%Y-%m-%d %H:%M:%S")
-                                        self.log.debug("Category: %s - Last post [ID]: %s Created: %s Updated: %s" % (str(item["category_id"]), str(last_post['post_id']), str(last_post_created_datetime), str(last_post_updated_datetime)))
-                                    first_new_post = False
-                                if post_updated_datetime < last_post_updated_datetime or post_updated_datetime == last_post_updated_datetime:
-                                    self.log.debug("Last post found: %s" % (str(last_post['post_id'])))
-                                    last_post_found = True
-                                    break
-                                elif post['updated_time'] == post['created_time']:
-                                    self.log.debug("Parsing new post: %s Posted at: %s %s  Page: %s" % (post["id"], str(post_created_datetime), str(post_updated_datetime), str(offset)))
-                                    # prepare the post data to pass to parser
-                                    prepared_post = {}
-                                    prepared_post['username'] = post['from']['name']
-                                    prepared_post['id'] = post['id']
-                                    prepared_post['text'] = post['text']
-                                    prepared_post['site'] = api.api_site
-                                    # parse each thread for commands
-                                    self.parseTextToPayload(prepared_post, str(post_created_datetime))
-                                else: 
-                                    self.log.debug("Skipping updated post: %s" % post['id'])
-                            if last_post_found == False:
-                                # increment the page variable.
-                                offset += 1
+            last_post_found = False
+            i = 1
+            # Get last post
+            try:    
+                last_post = db.get_last_post(api.api_type, 0)
+                last_post_created_datetime = datetime.datetime.strptime(str(last_post['created_datetime']), "%Y-%m-%d %H:%M:%S")
+                last_post_updated_datetime = datetime.datetime.strptime(str(last_post['updated_datetime']), "%Y-%m-%d %H:%M:%S")
+                self.log.debug("Last post retrieved: 1_%s Created: %s Updated: %s" % (str(last_post['post_id']), str(last_post_created_datetime), str(last_post_updated_datetime)))
+                last_post_in_db = True
+            except Exception as e:
+                import traceback, os.path
+                top = traceback.extract_stack()[-1]
+                print ', '.join([type(e).__name__, os.path.basename(top[0]), str(top[1])])
+                print e
+                # initialize last_post to unmatchable
+                self.log.debug("---No Last Post Found in DB---")
+                last_post_in_db = False
+            # While last post not found
+            while last_post_found == False:
+                thread_content = requests.get(api.base_url + "1_" + str(last_post['post_id'] + i) + '/')
+                try:
+                    post = json.loads(thread_content.content)
+                    i += 1
+                except Exception as e:
+                    self.log.debug("---Last Post Found: %s---" % str(last_post['post_id'] + i - 1))
+                    if i != 1:
+                        db.insert_new_last_post(api.api_site, "0", "0", str(last_post['post_id'] + i - 1), post_created_datetime, post_updated_datetime)
+                    last_post_found = True
+                if last_post_found == False:
+                    # Get time from post object
+                    post_id = post['id'].split("_",2)[1]
+                    post_updated_time_raw = post["updated_time"].split("T")
+                    post_date_list = post_updated_time_raw[0].split("-")
+                    post_time_list = post_updated_time_raw[1].split(":", 3)
+                    post_time_list[2] = post_time_list[2].split(".", 2)[0]
+                    post_updated_datetime = datetime.datetime(int(post_date_list[0]), int(post_date_list[1]), int(post_date_list[2]), int(post_time_list[0]), int(post_time_list[1]), int(post_time_list[2])) 
+                    post_created_time_raw = post["created_time"].split("T")
+                    post_date_list = post_created_time_raw[0].split("-")
+                    post_time_list = post_created_time_raw[1].split(":", 3)
+                    post_time_list[2] = post_time_list[2].split(".", 2)[0]
+                    post_created_datetime = datetime.datetime(int(post_date_list[0]), int(post_date_list[1]), int(post_date_list[2]), int(post_time_list[0]), int(post_time_list[1]), int(post_time_list[2]))
+                    if last_post_in_db == False:
+                        #algo for finding most recent post to seed the db
+                        pass
+                    else:
+                        self.log.debug("Parsing new post: %s Posted at: %s %s" % (post["id"], str(post_created_datetime), str(post_updated_datetime)))
+                        # prepare the post data to pass to parser
+                        prepared_post = {}
+                        prepared_post['username'] = post['from']['name']
+                        prepared_post['id'] = post['id']
+                        prepared_post['text'] = post['text']
+                        prepared_post['site'] = api.api_site
+                        # parse each thread for commands
+                        self.parseTextToPayload(prepared_post, str(post_created_datetime))
+
+        
         if api.api_type == 'phpbb':
             feed_response = requests.get(api.feed_url)
             if feed_response.status_code == 200:

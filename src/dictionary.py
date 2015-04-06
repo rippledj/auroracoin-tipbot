@@ -61,7 +61,7 @@ class Dictionary:
             self.MESSAGES_BACK_POOL_ERROR = "There was insufficient funds in our account to complete your withdrawl.  Administration has been notified and we will fix this immediately."
             self.MESSAGES_NO_ADDRESS_ERROR = "You must have a receive address onfile for automatic withdrawl. Please send us an Auroracoin public address."
             self.MESSAGES_DEPOSIT_ADDRESS = "Deposit Address: "
-            self.MESSAGES_DEPOSIT_EMAIL = "Dear %s, \n We recieved your AURtip deposit: %s"
+            self.MESSAGES_DEPOSIT_EMAIL = "We recieved your AURtip deposit of "
         if language == "icelandic":
             self.MESSAGES_AUR = "AUR"
             self.MESSAGES_INFO = "Aðgangsupplýsingar: "

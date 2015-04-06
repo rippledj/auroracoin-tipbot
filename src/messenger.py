@@ -118,6 +118,9 @@ class Messenger:
         mail.login(Messenger.SMTP_USERNAME, Messenger.SMTP_PASSWORD)
         mail.sendmail(Messenger.EMAIL_FROM, email_to, msg.as_string())
         mail.quit()
-        self.log.debug("Email sent to user %s" % username)
+        try:
+            self.log.debug("Email sent to user %s" % username)
+        except Exception as e:
+            pass
         
         
