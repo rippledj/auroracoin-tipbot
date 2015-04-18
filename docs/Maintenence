@@ -1,0 +1,53 @@
+Project: Aurora-Tipbot
+Title: Data Management
+Author: Joseph Lee
+Date: 2015-01-26
+Email: joseph.lee.esl@gmail.com
+
+Maintenence and Adding Forums
+=============================
+
+Application File Structure
+--------------------------
+
+-the appliation src directory contains the application files and log files
+
+-the following command will run the software:
+$ python tipbot.py
+
+in the tipbot.py file there is one important constant variables that are required to be set for configuring the process.
+The two most important ones are:
+RPC_PROFILE = selects which bitcoin core software is used to push transactions to the network.  Auroracoin is the only rpc profile that exists in the initial version of the software, but additional rpc profiles can be added.
+API_ROUTES = This variable is a dictionary array.  The main function of the software goes through each key, and each key has an array of sub profiles.  There is currently one for the bland.is site and one for all phpbb sites.
+
+To create a new phpbb profile that will be parsed with the others there are two steps:
+1) in the api_abstraction.py file, add an "if site = " section for the new phpbb forum you wish to parse
+
+if site == "new_site":
+                self.api_type = "phpbb"
+                self.api_site = "new_site"
+                self.feed_url = "http://new_site.com/feed.php"
+                self.login_url = "http://new_site.com/login"
+                self.username = "site_username"
+                self.password = "site_password"
+                self.post_url = "http://new_site.com/posting.php?mode=reply&"
+
+2) add a element to the list of sites in the tipbot.py file as below:
+
+API_ROUTES = {"bland": ["bland"], "phpbb": ["auroraspjall", "jeppaspjall", "skyttur", "islandrover", "blyfotur", "kruser", "mbclub", "new_site"]} 
+
+
+
+Installing from github and configuration
+----------------------------------------
+-On the VPS 
+
+
+Log Maintenence and searching through logs
+------------------------------------------
+-there are three logs files (degug.log, critical.log, and stdout.log)
+-logs are now located in the application's "src" directory
+
+
+
+

@@ -24,18 +24,11 @@ class ApiConnection:
         if profile == "bland":
             self.api_type = "bland"
             self.api_site = "bland"
-            base_url = "https://api.bland.is/"
-            key = "you api key"
-            access_token= "your access token"
+            self.base_url = "https://api.bland.is/"
+            key = "97c92bb0-350f-41df-b37f-788ca6ebda93"
+            access_token= "bAkAIoYqNrIWiDZzz%2fKGrn80GwBpVdnSGhUdVxc9%2byXCWboKlHZaEnwd5SD2JRM%2bNttdAQJ1tD7RGrJsyaR3fNDOjQL9h2SE"
             # Bland.is requires three APIs for finding commands in user text
-            self.categories_url = base_url + "messageboard/categories?api_key=" + key
-            self.threads_url = base_url + "messageboard/?api_key=" + key + "&category_id="
-            self.info_url = base_url + "me/info?access_token=" + access_token
-            self.inbox_url = base_url + "me/message?access_token=" + access_token + "&limit="
-            self.publish_url = base_url + "me/publishes?access_token=" + access_token
-            self.new_post_url = base_url + "me/messageboard/?api_key=" + key + "&access_token=" + access_token
-            self.parent_id_url = "&parent_id=" 
-            self.message_url = "&message="
+            self.new_post_url = self.base_url + "me/messageboard/?api_key=" + key + "&access_token=" + access_token
         
         if profile == "phpbb":
             if site == "auroraspjall":
@@ -53,6 +46,7 @@ class ApiConnection:
                 self.login_url = "http://www.jeppaspjall.is/ucp.php?mode=login"
                 self.username = "aurtip"
                 self.password = "Aurora Node ##"
+                self.post_url = "http://www.jeppaspjall.is/posting.php?mode=reply&"
             if site == "skyttur":
                 self.api_type = "phpbb"
                 self.api_site = "skyttur"
@@ -60,6 +54,7 @@ class ApiConnection:
                 self.login_url = "http://spjall.skyttur.is/ucp.php?mode=login"
                 self.username = "aurtip"
                 self.password = "Auroranode##"
+                self.post_url = "http://spjall.skyttur.is/posting.php?mode=reply&"
             if site == "islandrover":
                 self.api_type = "phpbb"
                 self.api_site = "islandrover"
@@ -67,6 +62,7 @@ class ApiConnection:
                 self.login_url = "http://www.islandrover.is/spjall/ucp.php?mode=login"
                 self.username = "aurtip"
                 self.password = "Auroranode##"
+                self.post_url = "http://www.islandrover.is/spjall/posting.php?mode=reply&"
             if site == "blyfotur":
                 self.api_type = "phpbb"
                 self.api_site = "blyfotur"
@@ -74,6 +70,7 @@ class ApiConnection:
                 self.login_url = "http://spjall.blyfotur.is/ucp.php?mode=login"
                 self.username = "aurtip"
                 self.password = "Auroranode##"
+                self.post_url = "http://spjall.blyfotur.is/posting.php?mode=reply&"
             if site == "kruser":
                 self.api_type = "phpbb"
                 self.api_site = "kruser"
@@ -81,6 +78,7 @@ class ApiConnection:
                 self.login_url = "http://spjall.kruser.is/ucp.php?mode=login"
                 self.username = "aurtip"
                 self.password = "Auroranode##"
+                self.post_url = "http://spjall.kruser.is/posting.php?mode=reply&"
             if site == "mbclub":
                 self.api_type = "phpbb"
                 self.api_site = "mbclub"
@@ -88,6 +86,7 @@ class ApiConnection:
                 self.login_url = "http://mbclub.is/login"
                 self.username = "aurtip"
                 self.password = "Auroranode##"
+                self.post_url = "http://mbclub.is/posting.php?mode=reply&"
 
 
                 
