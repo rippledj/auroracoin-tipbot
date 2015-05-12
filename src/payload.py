@@ -142,7 +142,10 @@ class Payload:
                     soup = BeautifulSoup(prepared_post['text'])
                     for tag in soup.find_all('blockquote'):
                         tag.replaceWith('')
-                    prepared_post['text'] = soup
+                    prepared_post['text'] = str(soup)
+                    tags_to_remove = ['<html>', '</html>', '<body>', '</body>', '<p>', '</p>']
+                    for tag in tags_to_remove:
+                        prepared_post['text'] = prepared_post['text'].replace(tag, " ")
                     if hasattr(entry, "published"):
                         post_created_datetime_list = entry.published.split("T", 2)
                         post_created_date = post_created_datetime_list[0]
