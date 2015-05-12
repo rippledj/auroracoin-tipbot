@@ -61,7 +61,7 @@ logger.debug("###### Starting Main Function TIPBOT v1.0 ######")
 # define connection settings
 DB_PROFILE = "mysql" 
 RPC_PROFILE = "auroracoind"
-API_ROUTES = {"bland": ["bland"]} 
+API_ROUTES = {"phpbb": ["auroraspjall"]} 
 #API_ROUTES = {"phpbb": ["auroraspjall", "jeppaspjall", "skyttur", "islandrover", "blyfotur", "kruser", "mbclub"]} 
 #API_ROUTES = {"test": ["test"]}
 
@@ -88,7 +88,7 @@ for api_profile, api_sites in API_ROUTES.items():
             print e
             fail = True
         # Build payload from an API source
-        forumPayload = payload.Payload(api_profile, api, db)
+        forumPayload = payload.Payload(api_profile, site, api, db)
         try:
             pass
             # Process the payload into command calls and return messages to users

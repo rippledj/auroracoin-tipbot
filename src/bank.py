@@ -58,10 +58,12 @@ class BankPayload:
                 move_balance = rpc.bitcoin.getbalance(DEPOSIT_POOL_ACCOUNT)
                 move_balance_string = str('%.10g' % move_balance).strip()
                 print move_balance
-                move_txid = rpc.bitcoin.sendfrom(DEPOSIT_POOL_ACCOUNT, back_pool_address, move_balance)
-                self.log.critical("Pooling deposits moved to back_pool: %s %s" % (back_pool_address, move_balance_string))
-                db.store_pool_transaction(move_balance_string, back_pool_address, move_txid)
-                new_balance = rpc.bitcoin.getbalance(DEPOSIT_POOL_ACCOUNT)
-                new_balance_string = str('%.10g' % new_balance).strip()
-                self.log.critical("New deposit pool balance: %s" % (new_balance_string))
-                
+                try: 
+                    move_txid = rpc.bitcoin.sendfrom(DEPOSIT_POOL_ACCOUNT, back_pool_address, move_balance)
+                    self.log.critical("Pooling deposits moved to back_pool: %s %s" % (back_pool_address, move_balance_string))
+                    db.store_pool_transaction(move_balance_string, back_pool_address, move_txid)
+                    new_balance = rpc.bitcoin.getbalance(DEPOSIT_POOL_ACCOUNT)
+                    new_balance_string = str('%.10g' % new_balance).strip()
+                    self.log.critical("New deposit pool balance: %s" % (new_balance_string))
+                except Exception as e:
+                    self.log.critical("Error moving deposit pool")

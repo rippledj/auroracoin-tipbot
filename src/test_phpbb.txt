@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-gb">
+<link rel="self" type="application/atom+xml" href="http://auroraspjall.is/feed.php" />
+
+<title>AuroraSpjall</title>
+<subtitle>The official Auroracoin discussion board</subtitle>
+<link href="http://auroraspjall.is/index.php" />
+<updated>2015-05-07T10:57:38+00:00</updated>
+
+<author><name><![CDATA[AuroraSpjall]]></name></author>
+<id>http://auroraspjall.is/feed.php</id>
+<entry>
+<author><name><![CDATA[maliksharam]]></name></author>
+<updated>2015-05-07T10:57:38+00:00</updated>
+<published>2015-05-07T10:57:38+00:00</published>
+<id>http://auroraspjall.is/viewtopic.php?t=179&amp;p=879#p879</id>
+<link href="http://auroraspjall.is/viewtopic.php?t=179&amp;p=879#p879"/>
+<title type="html"><![CDATA[Út fyrir umræðuna (Off-topic) • yoga to increase sex power]]></title>
+
+<category term="Út fyrir umræðuna (Off-topic)" scheme="http://auroraspjall.is/viewforum.php?f=16" label="Út fyrir umræðuna (Off-topic)"/>
+<content type="html" xml:base="http://auroraspjall.is/viewtopic.php?t=179&amp;p=879#p879"><![CDATA[
+to take care of the women and this is in complete harmony with the natural instinct that along has given us therefore when men to take care of their wives and their families they feel a sense of pride and accomplishment man like to be dependent on they  <a href="http://www.optimalstackfacts.org/spartagen-xt/" class="postlink" rel="nofollow" >spartagen xt</a> like tube viewed as providers and supporters and therefore working so hard for the family is a part is being a man the irony here is that when a woman complains that her husband is working long hours and therefore is not home to be with hereto complete two to pay attention to her to <br /><br /><!-- m --><a class="postlink" href="http://www.optimalstackfacts.org/spartagen-xt/" rel="nofollow" >http://www.optimalstackfacts.org/spartagen-xt/</a><!-- m --><p>Statistics: Posted by <a href="http://auroraspjall.is/memberlist.php?mode=viewprofile&amp;u=182">maliksharam</a> — 07 May 2015 10:57</p><hr />
+]]></content>
+</entry>
+<entry>
+<author><name><![CDATA[Dinobotta]]></name></author>
+<updated>2015-05-07T00:00:59+00:00</updated>
+<published>2015-05-07T00:00:59+00:00</published>
+<id>http://auroraspjall.is/viewtopic.php?t=176&amp;p=878#p878</id>
+<link href="http://auroraspjall.is/viewtopic.php?t=176&amp;p=878#p878"/>
+<title type="html"><![CDATA[Umræðan (General) • Re: How can non-technical people help AuroraCoin?]]></title>
+
+<category term="Umræðan (General)" scheme="http://auroraspjall.is/viewforum.php?f=6" label="Umræðan (General)"/>
+<content type="html" xml:base="http://auroraspjall.is/viewtopic.php?t=176&amp;p=878#p878"><![CDATA[
+<blockquote><div><cite>jonkolbeinn wrote:</cite><br />Hi everyone. <br /><br />Firstly I want to congratulate the people behind all of this for making AUR a reality. Secondly, I must also express my excitement when I heard that this cryptocurrency was made for Iceland. <br /><br />I'm an Icelander who studies abroad, so I didn't know about this until way too late. I was actually reading about Bitcoin and its potential as an alternate currency to fiat currency when I discovered AuroraCoin, and man did I get excited!<br /><br />My question to all of you is this:<br /><br />How can regular people, with no computer science/technical background help? <br /><br />I really want this project of yours to work and I'm wondering how we can help.<br /><br />Thank you,<br /><br />Jón<br /></div></blockquote><br /><br /><br />Sæll/hi Jón and welcome.<br /><br />I like you, perhaps don't have the right technical background for crypto, I'm a engineer not a programmer. On the other hand I have extensive experience from the banking sector and do what I can to reply to posts about Auroracoin and talk to people about how Auroracoin is perhaps the best solution to the currency controls and the inflation in Iceland. I also try to link my banking experience, i.e. trading on the Icelandic stock exchange to Auroracoin by investing in a ISK/AUR exchange with two other here on auroraspjall.<br /><br />Soon we will need some people to do translation work, become beta-testers (if you have Icelandic kennitala and a bank account in Iceland).<br /><br />Later you can help us promote Auroracoin, create games or activities where Auroracoin in involved, perhaps mix Auroracoin with something you are involved in now. <br /><br />When the new exchange is up and running you can become a market maker by buying and selling to minimize the spread on the market. Buy stuff from merchants that accept Auroracoin, go the extra mile and trade with them, then buy the AUR again on the exchange. <br /><br />If you are a good with words, pick your field and start spamming questions and answers on the forums and if you are up to it write articles and get them into the local papers.<br /><br />Then when the exchange is up and running try to get as many merchants to accept Auroracoin.<br /><br />Hlynur<p>Statistics: Posted by <a href="http://auroraspjall.is/memberlist.php?mode=viewprofile&amp;u=48">Dinobotta</a> — 07 May 2015 00:00</p><hr />
+]]></content>
+</entry>
+<entry>
+<author><name><![CDATA[LTEX]]></name></author>
+<updated>2015-05-06T18:00:59+00:00</updated>
+<published>2015-05-06T18:00:59+00:00</published>
+<id>http://auroraspjall.is/viewtopic.php?t=178&amp;p=877#p877</id>
+<link href="http://auroraspjall.is/viewtopic.php?t=178&amp;p=877#p877"/>
+<title type="html"><![CDATA[Markaðssetning og kynning (Marketing and Promotion) • What can people within Iceland do for us?]]></title>
+
+<category term="Markaðssetning og kynning (Marketing and Promotion)" scheme="http://auroraspjall.is/viewforum.php?f=21" label="Markaðssetning og kynning (Marketing and Promotion)"/>
+<content type="html" xml:base="http://auroraspjall.is/viewtopic.php?t=178&amp;p=877#p877"><![CDATA[
+Hi all,<br /><br /><br />Since I'm responsible for Marketing and promotion of auroracoin, I would like to invite people that live in Iceland to help us out in promoting our coin. We need people who can locally contribute by distributing promotional material, but also people willing to work with us on branding and campaigning. <br /><br />Oh, and since I'm Dutch, some translation might be helpful as well  <img src="http://auroraspjall.is/images/smilies/icon_e_biggrin.gif" alt=":D" title="Very Happy" /> <br /><br /><br />Thanks in advance!<br /><br /><br />Martin Jansen<p>Statistics: Posted by <a href="http://auroraspjall.is/memberlist.php?mode=viewprofile&amp;u=52">LTEX</a> — 06 May 2015 18:00</p><hr />
+]]></content>
+</entry>
+<entry>
+<author><name><![CDATA[LTEX]]></name></author>
+<updated>2015-05-06T17:44:44+00:00</updated>
+<published>2015-05-06T17:44:44+00:00</published>
+<id>http://auroraspjall.is/viewtopic.php?t=170&amp;p=876#p876</id>
+<link href="http://auroraspjall.is/viewtopic.php?t=170&amp;p=876#p876"/>
+<title type="html"><![CDATA[Umræðan (General) • Re: Bring AUR back to Iceland !]]></title>
+
+<category term="Umræðan (General)" scheme="http://auroraspjall.is/viewforum.php?f=6" label="Umræðan (General)"/>
+<content type="html" xml:base="http://auroraspjall.is/viewtopic.php?t=170&amp;p=876#p876"><![CDATA[
+I would like to take this up on a larger scale. By this I mean sending a real mailing out to all Iceland based companies inviting them to join our initiative and boost export sales by accepting AUR. Anyone from over there up to the job of:<br /><br /><ul><li> Translating the mailing (I will draft one soon</li><li> Getting a list of real company addresses (preferably the ones with webshops)</li><li> Printing and posting the letters from an Icelandic address</li></ul><br />I will pay for all the costs upfront in BTC, we can sort out any involvement from the foundation later.<p>Statistics: Posted by <a href="http://auroraspjall.is/memberlist.php?mode=viewprofile&amp;u=52">LTEX</a> — 06 May 2015 17:44</p><hr />
+]]></content>
+</entry>
+<entry>
+<author><name><![CDATA[Skarfurinn]]></name></author>
+<updated>2015-05-06T16:16:07+00:00</updated>
+<published>2015-05-06T16:16:07+00:00</published>
+<id>http://auroraspjall.is/viewtopic.php?t=177&amp;p=875#p875</id>
+<link href="http://auroraspjall.is/viewtopic.php?t=177&amp;p=875#p875"/>
+<title type="html"><![CDATA[Umræðan (General) • Need help to ID exchange and pool addresses]]></title>
+
+<category term="Umræðan (General)" scheme="http://auroraspjall.is/viewforum.php?f=6" label="Umræðan (General)"/>
+<content type="html" xml:base="http://auroraspjall.is/viewtopic.php?t=177&amp;p=875#p875"><![CDATA[
+I was wondering if someone here would be able to take on the task to figure out the AUR addresses for the exchanges and pools. We want to do this so we can get these labelled in the block explorers. <br /><br />The pools we know about are here:<br /><!-- l --><a class="postlink-local" href="http://auroraspjall.is/viewtopic.php?f=11&amp;t=9">viewtopic.php?f=11&amp;t=9</a><!-- l --><br /><br />And the exchanges we know about are here:<br /><!-- l --><a class="postlink-local" href="http://auroraspjall.is/viewtopic.php?f=15&amp;t=13">viewtopic.php?f=15&amp;t=13</a><!-- l --><br /><br />So if anyone is willing to tackle this then just post the addresses here or send me a PM if you prefer.<p>Statistics: Posted by <a href="http://auroraspjall.is/memberlist.php?mode=viewprofile&amp;u=2">Skarfurinn</a> — 06 May 2015 16:16</p><hr />
+]]></content>
+</entry>
+<entry>
+<author><name><![CDATA[Soltantgris]]></name></author>
+<updated>2015-05-06T13:02:17+00:00</updated>
+<published>2015-05-06T13:02:17+00:00</published>
+<id>http://auroraspjall.is/viewtopic.php?t=176&amp;p=874#p874</id>
+<link href="http://auroraspjall.is/viewtopic.php?t=176&amp;p=874#p874"/>
+<title type="html"><![CDATA[Umræðan (General) • Re: How can non-technical people help AuroraCoin?]]></title>
+
+<category term="Umræðan (General)" scheme="http://auroraspjall.is/viewforum.php?f=6" label="Umræðan (General)"/>
+<content type="html" xml:base="http://auroraspjall.is/viewtopic.php?t=176&amp;p=874#p874"><![CDATA[
+Jon,<br /><br />You can also jump in the chat skype group - may be fun to lurk a bit. Just ask me (my skype is ''soltantgris'').<p>Statistics: Posted by <a href="http://auroraspjall.is/memberlist.php?mode=viewprofile&amp;u=136">Soltantgris</a> — 06 May 2015 13:02</p><hr />
+]]></content>
+</entry>
+<entry>
+<author><name><![CDATA[jonkolbeinn]]></name></author>
+<updated>2015-05-06T11:03:37+00:00</updated>
+<published>2015-05-06T11:03:37+00:00</published>
+<id>http://auroraspjall.is/viewtopic.php?t=176&amp;p=873#p873</id>
+<link href="http://auroraspjall.is/viewtopic.php?t=176&amp;p=873#p873"/>
+<title type="html"><![CDATA[Umræðan (General) • Re: How can non-technical people help AuroraCoin?]]></title>
+
+<category term="Umræðan (General)" scheme="http://auroraspjall.is/viewforum.php?f=6" label="Umræðan (General)"/>
+<content type="html" xml:base="http://auroraspjall.is/viewtopic.php?t=176&amp;p=873#p873"><![CDATA[
+<span style="color: #000000">Hi again everyone. Thank you all for the quick replies.<br /><br />These are informative answers.<br /><br />I did register on Auraráð, but I'm currently awaiting confirmation.</span><br /><br /><br /><blockquote><div><cite>apcoins wrote:</cite><br />We have plenty of jobs for everyone for example article writing, translations, beta testing etc. It is the goal of the organization to educate our fellow country inhabitants about the advantages of the technology that lies behind auroracoin and explain in a simple way the usability. There is a lot of work ahead in making teaching videos, brochures and teaching material of all sorts. I encourage you to be in touch with us and we will surely be able to use your ability's. (sorry for the english)<br /></div></blockquote><br /><br /><span style="color: #000000">I would be glad to help in any way. Informing the public is definitely something that needs to be done. <br /><br />Teaching videos and teaching material is something that I have been doing lately relating to my medical studies. I have been tutoring  people in a general embryology course. I prepared notes and learning material along with very clear and simplified pictures which I drew on wacom tablet. So if I can be of help in that area, even if it's only with very minor things then that would be great.<br /><br />I could also help with Icelandic-to-English translations if required.</span><br /><br /><blockquote><div><cite>BioMike wrote:</cite><br />Currently there are a few technical things that need to be sorted out first, before we can get really going. But here are already a few suggestions:<br /><br />1) Be active on the forum (ask questions, get informed, help others solving problems they encounter and provide ideas) and discuss.<br />2) Documentation, some of it will be technical, but also a lot non-technical documentation will be required.<br />3) Translation. The dev team contains a few Icelandic people, but having a few extra people that can help translate interfaces of too-be-written software buts less burden on them, so they can focus on other aspects. Also documentation of Point 2 could use translation.<br />4) Talk with family in Iceland about it, see if they can come up with ideas to use it in their everyday life (also ideas for promotional things later).<br />5) Tell what you're good at and see how you can use that to help (discuss this).<br />6) Timeline at <!-- m --><a class="postlink" href="http://auroracoin.is" rel="nofollow" >http://auroracoin.is</a><!-- m --> needs to be caught up with. Sort out missing things and write short articles for it.<br /></div></blockquote><br /><br /><span style="color: #000000"><span style="font-weight: bold">Point 1</span>: I'm currently not in Iceland but I will definitely try to pay attention to what's going on.<br /><br /><span style="font-weight: bold">Points 2,3,5 and 6</span>: I think this is something that I would be able to do.<br /><br /><span style="font-weight: bold">Point 4</span>: I called my family right away to ask them if they had heard about this. I will of course continue to spread the word  <img src="http://auroraspjall.is/images/smilies/icon_e_wink.gif" alt=";)" title="Wink" /></span><br /><br /><blockquote><div><cite>Bimmerhead wrote:</cite><br />I could use some translation help with my two sites: skiptum.is and spurt.is<br /><br />You could also help by buying and selling Auroracoin on skiptum.is, and help build activity on spurt.is<br /><br />Spurt.is requires the use of Auroracoin if you want to set a bounty. It was created specifically to promote the use of AUR.<br /></div></blockquote><br /><span style="color: #000000"><br />I would be happy to help with translation. I checked out your site skiptum.is. It looks really clean, I like it  <img src="http://auroraspjall.is/images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> </span><br /><br /><br /><span style="color: #000000"><br />Right now I'm studying medicine in Hungary, it's quite intense and time consuming. But with the little extra time that I have, I would love to be a part of this.<br /><br />Thank you,<br /><br />Jón</span><p>Statistics: Posted by <a href="http://auroraspjall.is/memberlist.php?mode=viewprofile&amp;u=180">jonkolbeinn</a> — 06 May 2015 11:03</p><hr />
+]]></content>
+</entry>
+<entry>
+<author><name><![CDATA[Skarfurinn]]></name></author>
+<updated>2015-05-06T09:26:46+00:00</updated>
+<published>2015-05-06T09:26:46+00:00</published>
+<id>http://auroraspjall.is/viewtopic.php?t=174&amp;p=872#p872</id>
+<link href="http://auroraspjall.is/viewtopic.php?t=174&amp;p=872#p872"/>
+<title type="html"><![CDATA[Verkefnin (Projects) • Re: AUR - NLG pairing]]></title>
+
+<category term="Verkefnin (Projects)" scheme="http://auroraspjall.is/viewforum.php?f=9" label="Verkefnin (Projects)"/>
+<content type="html" xml:base="http://auroraspjall.is/viewtopic.php?t=174&amp;p=872#p872"><![CDATA[
+Honestly I didn't think of it before but I'm all for development where both coins can strengthen and support one another, this is not a competition. I think that crypto's should work more together to support another and the country coins have a lot of possibilities in that field.<p>Statistics: Posted by <a href="http://auroraspjall.is/memberlist.php?mode=viewprofile&amp;u=2">Skarfurinn</a> — 06 May 2015 09:26</p><hr />
+]]></content>
+</entry>
+<entry>
+<author><name><![CDATA[Soltantgris]]></name></author>
+<updated>2015-05-05T23:52:10+00:00</updated>
+<published>2015-05-05T23:52:10+00:00</published>
+<id>http://auroraspjall.is/viewtopic.php?t=171&amp;p=871#p871</id>
+<link href="http://auroraspjall.is/viewtopic.php?t=171&amp;p=871#p871"/>
+<title type="html"><![CDATA[Þróun (Development) • Re: Proof-of-Transaction]]></title>
+
+<category term="Þróun (Development)" scheme="http://auroraspjall.is/viewforum.php?f=8" label="Þróun (Development)"/>
+<content type="html" xml:base="http://auroraspjall.is/viewtopic.php?t=171&amp;p=871#p871"><![CDATA[
+I pointed this topic to Ofeefee - so he may join when he see it. He worked a lot with PoT.<p>Statistics: Posted by <a href="http://auroraspjall.is/memberlist.php?mode=viewprofile&amp;u=136">Soltantgris</a> — 05 May 2015 23:52</p><hr />
+]]></content>
+</entry>
+<entry>
+<author><name><![CDATA[Bimmerhead]]></name></author>
+<updated>2015-05-05T23:19:56+00:00</updated>
+<published>2015-05-05T23:19:56+00:00</published>
+<id>http://auroraspjall.is/viewtopic.php?t=176&amp;p=870#p870</id>
+<link href="http://auroraspjall.is/viewtopic.php?t=176&amp;p=870#p870"/>
+<title type="html"><![CDATA[Umræðan (General) • Re: How can non-technical people help AuroraCoin?]]></title>
+
+<category term="Umræðan (General)" scheme="http://auroraspjall.is/viewforum.php?f=6" label="Umræðan (General)"/>
+<content type="html" xml:base="http://auroraspjall.is/viewtopic.php?t=176&amp;p=870#p870"><![CDATA[
+I could use some translation help with my two sites: skiptum.is and spurt.is<br /><br />You could also help by buying and selling Auroracoin on skiptum.is, and help build activity on spurt.is<br /><br />Spurt.is requires the use of Auroracoin if you want to set a bounty. It was created specifically to promote the use of AUR.<p>Statistics: Posted by <a href="http://auroraspjall.is/memberlist.php?mode=viewprofile&amp;u=51">Bimmerhead</a> — 05 May 2015 23:19</p><hr />
+]]></content>
+</entry>
+<entry>
+<author><name><![CDATA[apcoins]]></name></author>
+<updated>2015-05-05T23:12:10+00:00</updated>
+<published>2015-05-05T23:12:10+00:00</published>
+<id>http://auroraspjall.is/viewtopic.php?t=176&amp;p=869#p869</id>
+<link href="http://auroraspjall.is/viewtopic.php?t=176&amp;p=869#p869"/>
+<title type="html"><![CDATA[Umræðan (General) • Re: How can non-technical people help AuroraCoin?]]></title>
+
+<category term="Umræðan (General)" scheme="http://auroraspjall.is/viewforum.php?f=6" label="Umræðan (General)"/>
+<content type="html" xml:base="http://auroraspjall.is/viewtopic.php?t=176&amp;p=869#p869"><![CDATA[
+<blockquote><div><cite>jonkolbeinn wrote:</cite><br />Hi everyone. <br /><br />Firstly I want to congratulate the people behind all of this for making AUR a reality. Secondly, I must also express my excitement when I heard that this cryptocurrency was made for Iceland. <br /><br />I'm an Icelander who studies abroad, so I didn't know about this until way too late. I was actually reading about Bitcoin and its potential as an alternate currency to fiat currency when I discovered AuroraCoin, and man did I get excited!<br /><br />My question to all of you is this:<br /><br />How can regular people, with no computer science/technical background help? <br /><br />I really want this project of yours to work and I'm wondering how we can help.<br /><br />Thank you,<br /><br />Jón<br /></div></blockquote><br />Sæll Jón (english version below)<br />Við höfum stofnað samtök um auroracoin á íslandi, Auraráð. Vefsíðan okkar er enn í vinnslu en er þó með virkt form til að sækja um inngöngu, <!-- m --><a class="postlink" href="http://aurarad.is/" rel="nofollow" >http://aurarad.is/</a><!-- m --><br /><br />Það er nóg fyrir alla að gera hjá okkur t.d greinaskrif, þýðingar, prufanir ofl. Það er markmið samtakana að fræða samlanda okkar um kosti tækninnar sem liggur á bakvið auroracoin sem og útskýra á einfaldan hátt notkunarmöguleika. Það mun vera mikil vinna framundan í að útbúa kennslumyndbönd, bæklinga og kennsluefni á hverskyns formi. Ég hvet þig til að vera í sambandi við okkur og við getum örugglega nýtt hæfileika þína.<br /><br />Hi Jón<br />We have formed a organization for auroracoin in iceland, Auraráð. The website is still under construction but has a functional registration form to apply for membership, <!-- m --><a class="postlink" href="http://aurarad.is/" rel="nofollow" >http://aurarad.is/</a><!-- m --><br /><br />We have plenty of jobs for everyone for example article writing, translations, beta testing etc. It is the goal of the organization to educate our fellow country inhabitants about the advantages of the technology that lies behind auroracoin and explain in a simple way the usability. There is a lot of work ahead in making teaching videos, brochures and teaching material of all sorts. I encourage you to be in touch with us and we will surely be able to use your ability's. (sorry for the english)<p>Statistics: Posted by <a href="http://auroraspjall.is/memberlist.php?mode=viewprofile&amp;u=53">apcoins</a> — 05 May 2015 23:12</p><hr />
+]]></content>
+</entry>
+<entry>
+<author><name><![CDATA[Soltantgris]]></name></author>
+<updated>2015-05-05T22:07:30+00:00</updated>
+<published>2015-05-05T22:07:30+00:00</published>
+<id>http://auroraspjall.is/viewtopic.php?t=176&amp;p=868#p868</id>
+<link href="http://auroraspjall.is/viewtopic.php?t=176&amp;p=868#p868"/>
+<title type="html"><![CDATA[Umræðan (General) • Re: How can non-technical people help AuroraCoin?]]></title>
+
+<category term="Umræðan (General)" scheme="http://auroraspjall.is/viewforum.php?f=6" label="Umræðan (General)"/>
+<content type="html" xml:base="http://auroraspjall.is/viewtopic.php?t=176&amp;p=868#p868"><![CDATA[
+Pretty sure Jon can help correcting - translating - creating texts.<p>Statistics: Posted by <a href="http://auroraspjall.is/memberlist.php?mode=viewprofile&amp;u=136">Soltantgris</a> — 05 May 2015 22:07</p><hr />
+]]></content>
+</entry>
+<entry>
+<author><name><![CDATA[BioMike]]></name></author>
+<updated>2015-05-05T21:51:00+00:00</updated>
+<published>2015-05-05T21:51:00+00:00</published>
+<id>http://auroraspjall.is/viewtopic.php?t=176&amp;p=867#p867</id>
+<link href="http://auroraspjall.is/viewtopic.php?t=176&amp;p=867#p867"/>
+<title type="html"><![CDATA[Umræðan (General) • Re: How can non-technical people help AuroraCoin?]]></title>
+
+<category term="Umræðan (General)" scheme="http://auroraspjall.is/viewforum.php?f=6" label="Umræðan (General)"/>
+<content type="html" xml:base="http://auroraspjall.is/viewtopic.php?t=176&amp;p=867#p867"><![CDATA[
+Hello Jon,<br /><br />Welcome to the forum.<br /><br />Currently there are a few technical things that need to be sorted out first, before we can get really going. But here are already a few suggestions:<br /><br />1) Be active on the forum (ask questions, get informed, help others solving problems they encounter and provide ideas) and discuss.<br />2) Documentation, some of it will be technical, but also a lot non-technical documentation will be required.<br />3) Translation. The dev team contains a few Icelandic people, but having a few extra people that can help translate interfaces of too-be-written software buts less burden on them, so they can focus on other aspects. Also documentation of Point 2 could use translation.<br />4) Talk with family in Iceland about it, see if they can come up with ideas to use it in their everyday life (also ideas for promotional things later).<br />5) Tell what you're good at and see how you can use that to help (discuss this).<br />6) Timeline at <!-- m --><a class="postlink" href="http://auroracoin.is" rel="nofollow" >http://auroracoin.is</a><!-- m --> needs to be caught up with. Sort out missing things and write short articles for it.<br /><br />If there is something specific that you want to help with, let us know.<p>Statistics: Posted by <a href="http://auroraspjall.is/memberlist.php?mode=viewprofile&amp;u=114">BioMike</a> — 05 May 2015 21:51</p><hr />
+]]></content>
+</entry>
+<entry>
+<author><name><![CDATA[odin]]></name></author>
+<updated>2015-05-05T21:12:30+00:00</updated>
+<published>2015-05-05T21:12:30+00:00</published>
+<id>http://auroraspjall.is/viewtopic.php?t=176&amp;p=866#p866</id>
+<link href="http://auroraspjall.is/viewtopic.php?t=176&amp;p=866#p866"/>
+<title type="html"><![CDATA[Umræðan (General) • Re: How can non-technical people help AuroraCoin?]]></title>
+
+<category term="Umræðan (General)" scheme="http://auroraspjall.is/viewforum.php?f=6" label="Umræðan (General)"/>
+<content type="html" xml:base="http://auroraspjall.is/viewtopic.php?t=176&amp;p=866#p866"><![CDATA[
+You can buy auroracoin, give auroracoin to your close friends, save a portion of your income as auroracoin<p>Statistics: Posted by <a href="http://auroraspjall.is/memberlist.php?mode=viewprofile&amp;u=56">odin</a> — 05 May 2015 21:12</p><hr />
+]]></content>
+</entry>
+<entry>
+<author><name><![CDATA[jonkolbeinn]]></name></author>
+<updated>2015-05-05T20:18:40+00:00</updated>
+<published>2015-05-05T20:18:40+00:00</published>
+<id>http://auroraspjall.is/viewtopic.php?t=176&amp;p=865#p865</id>
+<link href="http://auroraspjall.is/viewtopic.php?t=176&amp;p=865#p865"/>
+<title type="html"><![CDATA[Umræðan (General) • How can non-technical people help AuroraCoin?]]></title>
+
+<category term="Umræðan (General)" scheme="http://auroraspjall.is/viewforum.php?f=6" label="Umræðan (General)"/>
+<content type="html" xml:base="http://auroraspjall.is/viewtopic.php?t=176&amp;p=865#p865"><![CDATA[
+Hi everyone. <br /><br />Firstly I want to congratulate the people behind all of this for making AUR a reality. Secondly, I must also express my excitement when I heard that this cryptocurrency was made for Iceland. <br /><br />I'm an Icelander who studies abroad, so I didn't know about this until way too late. I was actually reading about Bitcoin and its potential as an alternate currency to fiat currency when I discovered AuroraCoin, and man did I get excited!<br /><br />My question to all of you is this:<br /><br />How can regular people, with no computer science/technical background help? <br /><br />I really want this project of yours to work and I'm wondering how we can help.<br /><br />Thank you,<br /><br />Jón<p>Statistics: Posted by <a href="http://auroraspjall.is/memberlist.php?mode=viewprofile&amp;u=180">jonkolbeinn</a> — 05 May 2015 20:18</p><hr />
+]]></content>
+</entry>
+</feed>
